@@ -5,7 +5,14 @@ namespace Cine.Core.Persistencia;
 /// </summary>
 /// <typeparam name="TE">Tipo de elemento a traer</typeparam>
 /// <typeparam name="TI">Tipo del indice a filtrar, es numerico y simple</typeparam>
-public interface IRepoDetalle<TE, TI> where TI: IBinaryNumber<TI>
+public interface IRepoDetalle<TE, TI> where TI : IBinaryNumber<TI>
 {
     TE? Detalle(TI indiceSimple);
 }
+
+public interface IRepoDetalleAsync<TE, TI> where TI : IBinaryNumber<TI>
+{
+    Task<TE?> DetalleAsync(TI indiceSimple);
+}
+
+

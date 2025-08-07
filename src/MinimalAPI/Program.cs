@@ -52,8 +52,8 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/generos", (IRepoGenero repo) =>
     repo.TraerElementos());
 
-app.MapGet("/actores", (IRepoActor repo) =>
-    repo.TraerElementos());
+app.MapGet("/actores", async (IRepoActor repo) =>
+    repo.TraerElementos());  //no aparece el async
 
 //----------------------------------------------
 
@@ -64,8 +64,8 @@ app.MapGet("/generos/{id}", (byte id,  IRepoGenero repo) =>
             : Results.NotFound());
 
 
-app.MapGet("/actores/{id}", (byte id,  IRepoActor repo) =>
-    repo.Detalle(id)
+app.MapGet("/actores/{id}", async (byte id,  IRepoActor repo) =>
+    await repo.DetalleAsync(id)    //Aparece el detalleAsync, pero este tiene un error. 
         is Actor xactor
             ? Results.Ok(xactor)
             : Results.NotFound());
