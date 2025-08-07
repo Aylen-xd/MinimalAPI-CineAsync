@@ -40,7 +40,7 @@ public class RepoActor : RepoBase, IRepoActor
     public IEnumerable<Actor> TraerElementos()
     {
         //Hacer la query de select actores.
-        var query = @"SELECT idActor, Nombre, Apellido, fecha_nacimiento 'fnacimiento', sexo, nacionalidad, rol  FROM Actor";
+        var query = @"SELECT idActor, Nombre, Apellido, fecha_nacimiento 'fnacimiento', sexo, nacionalidad, rol  FROM Actor ";
         var Actor = Conexion.Query<Actor>(query);
         return Actor;
     }
@@ -79,7 +79,7 @@ public class RepoActor : RepoBase, IRepoActor
     //------------------------ Metodo Async TraerElementos -----------------------------
     public async Task<IEnumerable<Actor>> TraerElementosAsync()
     {
-        var query = @"SELECT idActor, Nombre, Apellido, fecha_nacimiento 'fnacimiento', sexo, nacionalidad, rol FROM Actor where idActor = @idActor";
+        var query = @"SELECT idActor, Nombre, Apellido, fecha_nacimiento 'fnacimiento', sexo, nacionalidad, rol FROM Actor";
         var Actor = await Conexion.QueryAsync<Actor>(query);
         return Actor;
     }

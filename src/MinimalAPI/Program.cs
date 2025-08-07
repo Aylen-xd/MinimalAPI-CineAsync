@@ -57,7 +57,7 @@ app.MapGet("/actores", async (IRepoActor repo) =>
 
 //----------------------------------------------
 
-app.MapGet("/generos/{id}", async (byte id,  IRepoGenero repo) =>
+app.MapGet("/generosPorID/{id}", async (byte id,  IRepoGenero repo) =>
     await repo.DetalleAsync(id) //el metodo no acepta parametros
         is Genero xgenero
             ? Results.Ok(xgenero)

@@ -26,7 +26,7 @@ public class RepoGenero : RepoBase, IRepoGenero
 
         Conexion.Execute("InsGenero", parametros);
 
-        elemento.IdGenero = parametros.Get<byte>("xidGenero");
+        elemento.IdGenero = parametros.Get<byte>("unidGenero");
     }
 
 
@@ -57,7 +57,7 @@ public class RepoGenero : RepoBase, IRepoGenero
     public async Task<Genero?> DetalleAsync(byte id) //como devuleve un solo actor, es sin el IEnumearble
     {
         var query = @"SELECT idGenero, genero 'nombre' FROM Genero where idGenero = @idGenero";
-        var generosID = await Conexion.QuerySingleOrDefaultAsync<Genero>(query, new { idActor = id });
+        var generosID = await Conexion.QuerySingleOrDefaultAsync<Genero>(query, new { idGenero = id });
         return generosID;
         //IRepoDetalle<Genero, byte>
     }
@@ -69,8 +69,6 @@ public class RepoGenero : RepoBase, IRepoGenero
 
         await Conexion.ExecuteAsync("InsGenero", parametros);
 
-        elemento.IdGenero = parametros.Get<byte>("xidGenero");
+        elemento.IdGenero = parametros.Get<byte>("unidGenero");
     }
-
-
 }
