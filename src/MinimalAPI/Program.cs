@@ -49,16 +49,16 @@ if (app.Environment.IsDevelopment())
 //Para un GET en la ruta "/todoitems", 
 
 //no tiene dependencia------------------------------------
-app.MapGet("/generos", (IRepoGenero repo) =>
-    repo.TraerElementos());
+app.MapGet("/generos", async (IRepoGenero repo) =>
+    await repo.TraerElementosAsync());
 
 app.MapGet("/actores", async (IRepoActor repo) =>
-    repo.TraerElementos());  //no aparece el async
+    await repo.TraerElementosAsync());  //aparece el async
 
 //----------------------------------------------
 
-app.MapGet("/generos/{id}", (byte id,  IRepoGenero repo) =>
-    repo.Detalle(id) //el metodo no acepta parametros
+app.MapGet("/generos/{id}", async (byte id,  IRepoGenero repo) =>
+    await repo.DetalleAsync(id) //el metodo no acepta parametros
         is Genero xgenero
             ? Results.Ok(xgenero)
             : Results.NotFound());
@@ -72,18 +72,18 @@ app.MapGet("/actores/{id}", async (byte id,  IRepoActor repo) =>
 
 //----------------------------------------------
 
-app.MapPost("/genero", (Genero xgenero, IRepoGenero repo) =>
+app.MapPost("/genero", async (Genero xgenero, IRepoGenero repo) =>
 {
-    repo.Alta(xgenero);
+    await repo.AltaAsync(xgenero);
 
     return Results.Created($"/genero/{xgenero.IdGenero}", xgenero);
 });
 
-app.MapPost("/actores", (Actor xactor, IRepoActor repo) =>
+app.MapPost("/actores", async (Actor xactor, IRepoActor repo) =>
 {
-    repo.Alta(xactor);
+    await repo.AltaAsync(xactor);
 
-    return Results.Created($"/actores/{xactor.idActor}", xactor);
+    return Results.Created($"/actores/{xactor.idActor}", xactor);    //el alta async ya esta. 
 });
 
 //----------------------------------------------
