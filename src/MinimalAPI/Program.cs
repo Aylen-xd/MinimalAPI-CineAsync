@@ -86,13 +86,23 @@ app.MapPost("/genero", async (Genero xgenero, IRepoGenero repo) =>
     return Results.Created($"/genero/{xgenero.IdGenero}", xgenero);
 });
 
-app.MapPost("/actores", async (Actor xactor, IRepoActor repo) =>
+app.MapPost("/actor", async (CrearActorDTO xactor, IRepoActor repo) =>
 {
-    await repo.AltaAsync(xactor);
+    Actor actor = new ()
+    {
+        Nombre = xactor.Nombre,
+        Apellido = xactor.Apellido,
+        Nacionalidad = xactor.Nacionalidad,
+        Fecha_naciemiento = xactor.Fecha_naciemiento,
+        Sexo = xactor.Sexo,
+        Rol = xactor.Rol
+    };
 
-    var actorDTO = new CrearActorDTO(xactor);
+    await repo.AltaAsync(actor);
 
-    return Results.Created($"/actores/{xactor.idActor}", xactor);     
+    var actorDTO = new CrearActorDTO(actor);
+
+    return Results.Created($"/actor/{xactor.idActor}", xactor);     
 });
 
 //-----------------------------si tiene dependencia--------------------------------------

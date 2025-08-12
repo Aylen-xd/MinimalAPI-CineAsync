@@ -36,12 +36,12 @@ public record struct CrearActorDTO
     public string Nombre { get; init; }
     public string Apellido { get; init; }
     public string Nacionalidad { get; init; }
-    public DateTime Fecha_nacieminto { get; init; }
+    public DateTime Fecha_naciemiento { get; init; }
     public char Sexo { get; init; }
     public string Rol { get; init; }
 
     public CrearActorDTO(Actor actor) =>
-        (Nombre, Apellido, Nacionalidad, Fecha_nacieminto, Sexo, Rol) = (actor.Nombre, actor.Apellido, actor.Nacionalidad, actor.FNacimiento, actor.Sexo, actor.Rol);
+        (Nombre, Apellido, Nacionalidad, Fecha_naciemiento, Sexo, Rol) = (actor.Nombre, actor.Apellido, actor.Nacionalidad, actor.FNacimiento, actor.Sexo, actor.Rol);
 }
 
 //public record struct GeneroDTO(string nombre); //no se si hace falta este 
