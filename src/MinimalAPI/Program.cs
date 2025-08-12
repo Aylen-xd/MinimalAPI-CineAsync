@@ -69,11 +69,13 @@ app.MapGet("/generosPorID/{id}", async (byte id,  IRepoGenero repo) =>
             : Results.NotFound());
 
 
-app.MapGet("/actores/{id}", async (byte id,  IRepoActor repo) =>
-    await repo.DetalleAsync(id)    //Aparece el detalleAsync, pero este tiene un error. 
-        is Actor xactor
-            ? Results.Ok(xactor)
-            : Results.NotFound());
+app.MapGet("/actores/{id}", async (byte id, IRepoActor repo) =>
+{
+    var actor = await repo.DetalleAsync(id);
+    return actor is not null ?
+            Results.Ok(new DetalleActorDTO(actor)) :
+            Results.NotFound();
+});
 
 //----------------------------------------------
 
@@ -88,8 +90,40 @@ app.MapPost("/actores", async (Actor xactor, IRepoActor repo) =>
 {
     await repo.AltaAsync(xactor);
 
-    return Results.Created($"/actores/{xactor.idActor}", xactor);    //el alta async ya esta. 
+    var actorDTO = new CrearActorDTO(xactor);
+
+    return Results.Created($"/actores/{xactor.idActor}", xactor);     
 });
+
+//-----------------------------si tiene dependencia--------------------------------------
+/*
+
+app.MapGet("/estudio", (IRepoEstudio repo) =>
+    repo.TraerElementos());
+
+app.MapGet("/trailers", (IRepoTrailer repo) =>
+    repo.TraerElementos());
+
+app.MapGet("/saga", (IRepoSaga repo) =>
+    repo.TraerElementos());
+
+app.MapGet("/pelicula", (IRepoPelicula repo) =>
+    repo.TraerElementos());
+
+app.MapGet("/produccion", (IRepoProduccion repo) =>
+    repo.TraerElementos());
+
+*/
+//-----------------------------------------------------------
+
+app.Run();
+
+
+
+
+
+
+
 
 //----------------------------------------------
 
@@ -121,26 +155,3 @@ app.MapDelete("/genero/{id}", (int id, IRepoGenero repo) =>
     return Results.NotFound();
 });
 */
-app.Run();
-
-
-/*
-//si tiene dependencia--------------------------------------
-app.MapGet("/trailers", (IRepoTrailer repo) =>
-    repo.TraerElementos());
-
-app.MapGet("/saga", (IRepoSaga repo) =>
-    repo.TraerElementos());
-
-app.MapGet("/estudio", (IRepoEstudio repo) =>
-    repo.TraerElementos());
-
-app.MapGet("/pelicula", (IRepoPelicula repo) =>
-    repo.TraerElementos());
-
-app.MapGet("/produccion", (IRepoProduccion repo) =>
-    repo.TraerElementos());
-
-//-----------------------------------------------------------
-*/
-
