@@ -4,6 +4,8 @@ using Cine.Persistencia.Dapper.Repos;
 using MySqlConnector;
 using Scalar.AspNetCore;
 using Cine.Core;
+using Microsoft.VisualBasic;
+using MinimalAPI.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +55,10 @@ app.MapGet("/generos", async (IRepoGenero repo) =>
     await repo.TraerElementosAsync());
 
 app.MapGet("/actores", async (IRepoActor repo) =>
-    await repo.TraerElementosAsync());  //aparece el async
+    {
+        var actores = await repo.TraerElementosAsync();
+        return Results.Ok(actores.Select(a => new ListadoActorDTO(a)));
+    });  //aparece el async
 
 //----------------------------------------------
 

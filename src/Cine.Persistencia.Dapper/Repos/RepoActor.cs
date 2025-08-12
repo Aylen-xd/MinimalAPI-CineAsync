@@ -27,13 +27,13 @@ public class RepoActor : RepoBase, IRepoActor
     public void Alta(Actor elemento)
     {
         {
-        //Es una clase Dapper para parametros o procedmientos almacenados
-        DynamicParameters parametros = ConfigurarParamestrosAltaActor(elemento); //Este metodo llena los parametros que necesita cuando se ingresa un actor
+            //Es una clase Dapper para parametros o procedmientos almacenados
+            DynamicParameters parametros = ConfigurarParamestrosAltaActor(elemento); //Este metodo llena los parametros que necesita cuando se ingresa un actor
 
-        Conexion.Execute("InsActor", parametros); //Ejecuta el proceso almacenado en la base de datos InsActor (se encuentra en MySQL)
+            Conexion.Execute("InsActor", parametros); //Ejecuta el proceso almacenado en la base de datos InsActor (se encuentra en MySQL)
 
-        elemento.idActor = parametros.Get<byte>("xidActor");
-    }
+            elemento.idActor = parametros.Get<byte>("xidActor");
+        }
 
     }
 
@@ -92,4 +92,5 @@ public class RepoActor : RepoBase, IRepoActor
         return actorID;
         //IRepoDetalle<Genero, byte>
     }
+
 }
