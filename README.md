@@ -35,11 +35,8 @@ _Finalizado
 - MySQL 8.0
 - Visual Studio Code.
 
-## Autores ✒️
-
-- **Francisco García** - [SirFrancis2007](https://github.com/SirFrancis2007) 
+## Autora ✒️
 - **Aylen Toledo** - [Aylen-xd](https://github.com/Aylen-xd)
-- **Geraldine Vargas** - [Gerald-Vargas](https://github.com/Gerald-Vargas) 
 
 
 ## Licencia 📄
