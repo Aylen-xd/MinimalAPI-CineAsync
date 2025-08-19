@@ -22,6 +22,8 @@ builder.Services.AddScoped<IDbConnection>(sp => new MySqlConnection(connectionSt
 builder.Services.AddScoped<IRepoGenero, RepoGenero>();
 builder.Services.AddScoped<IRepoActor, RepoActor>();
 
+//Agregado pelicula
+builder.Services.AddScoped<IRepoPelicula, RepoPelicula>();
 
 
 /*
@@ -29,7 +31,6 @@ builder.Services.AddScoped<IRepoActor, RepoActor>();
 builder.Services.AddScoped<IRepoTrailer, RepoTrailer>();
 builder.Services.AddScoped<IRepoSaga, RepoSaga>();
 builder.Services.AddScoped<IRepoEstudio, RepoEstudio>();
-builder.Services.AddScoped<IRepoPelicula, RepoPelicula>();
 builder.Services.AddScoped<IRepoProduccion, RepoProduccion>();
 */
 
@@ -109,11 +110,12 @@ app.MapGet("/peliculasPorID/{id}", async (byte id,  IRepoPelicula repo) =>
             ? Results.Ok(xpelicula)
             : Results.NotFound());
 
-app.MapPost("/pelicula", async (Pelicula xpelicula, IRepoPelicula repo) =>
+app.MapPost("/peliculas", async (CrearPeliculaDTO xpelicula, IRepoPelicula repo) =>
 {
-    await repo.AltaAsync(xpelicula);
+    var peli = xpelicula.GetPelicula();
+    await repo.AltaAsync(peli);
 
-    return Results.Created($"/pelicula/{xpelicula.IdPelicula}", xpelicula);
+    return Results.Created($"/pelicula/{peli.IdPelicula}", xpelicula);
 });
 
 //-----------------------------si tiene dependencia--------------------------------------

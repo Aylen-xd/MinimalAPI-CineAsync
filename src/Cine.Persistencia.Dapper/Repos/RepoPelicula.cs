@@ -92,8 +92,8 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 
     public async Task<Pelicula?> DetalleAsync(byte id)
     {
-        var query = @"SELECT * FROM Pelicula";
-        var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query);
+        var query = @"SELECT * FROM Pelicula WHERE idPelicula = @idPelicula";
+        var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query, new { idActor = id });
         return peliculaID;
     }
 }

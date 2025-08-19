@@ -1,6 +1,4 @@
 using Cine.Core;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.SignalR;
 
 namespace MinimalAPI.DTOs;
 
@@ -68,7 +66,7 @@ public record struct DetallePeliculaDTO
     public TimeSpan Duracion { get; init; }
     public byte Calificacion { get; init; }
     public byte Restrincion { get; init; }
-    public UInt64 Recaudado { get; init; }
+    public ulong Recaudado { get; init; }
 
     public DetallePeliculaDTO(Pelicula pelicula) =>
         (Id, Nombre, Descripcion, Duracion, Calificacion, Restrincion, Recaudado) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Duracion, pelicula.Calificacion, pelicula.Restriccion, pelicula.Recaudado);
@@ -83,17 +81,21 @@ public record struct CrearPeliculaDTO
     public TimeSpan Duracion { get; init; }
     public byte Calificacion { get; init; }
     public byte Restrincion { get; init; }
-    public UInt64 Recaudado { get; init; }
+    public ulong Recaudado { get; init; }
+    public DateTime Estreno { get; init; }
 
     public CrearPeliculaDTO(Pelicula pelicula) =>
-        (Id, Nombre, Descripcion, Duracion, Calificacion, Restrincion, Recaudado) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Duracion, pelicula.Calificacion, pelicula.Restriccion, pelicula.Recaudado);
+        (Id, Nombre, Descripcion, Duracion, Calificacion, Restrincion, Recaudado, Estreno) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Duracion, pelicula.Calificacion, pelicula.Restriccion, pelicula.Recaudado, pelicula.Estreno);
+    public Pelicula GetPelicula()
+        => new Pelicula(0, 0, Nombre, Estreno, Descripcion, Calificacion, Duracion, Restrincion, Recaudado);
 }
 
 
 
 //-----------------------ESTAN EN LA API-------------------------------------
 
-//---------------------------------------------------------------
+/*
+
 public record struct ListadoEstudioDTO
 {
     public byte Id { get; init; }
@@ -131,8 +133,9 @@ public record struct LisatdoTrailerDTO
     public LisatdoTrailerDTO(Trailer trailer) =>
         (Id, Nombre, Duracion) = (trailer.IdTrailer, trailer.Nombre, trailer.Duracion);
 }
+*/
 
-//---------------------------------------------------------------
+
 
 
 
