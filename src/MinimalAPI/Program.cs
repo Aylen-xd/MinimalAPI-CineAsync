@@ -100,8 +100,21 @@ app.MapPost("/actor", async (CrearActorDTO dto, IRepoActor repo) =>
 
 //-----------------------------AGREGANDO PELICULA--------------------------------------
 
+app.MapGet("/peliculas", async (IRepoPelicula repo) =>
+    await repo.TraerElementoAsync());
 
+app.MapGet("/peliculasPorID/{id}", async (byte id,  IRepoPelicula repo) =>
+    await repo.DetalleAsync(id) //el metodo no acepta parametros
+        is Pelicula xpelicula
+            ? Results.Ok(xpelicula)
+            : Results.NotFound());
 
+app.MapPost("/pelicula", async (Pelicula xpelicula, IRepoPelicula repo) =>
+{
+    await repo.AltaAsync(xpelicula);
+
+    return Results.Created($"/pelicula/{xpelicula.IdPelicula}", xpelicula);
+});
 
 //-----------------------------si tiene dependencia--------------------------------------
 /*

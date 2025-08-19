@@ -1,8 +1,10 @@
 namespace Cine.Core.Persistencia;
 
-public interface IRepoPelicula : IRepoAlta<Pelicula>, IListado<Pelicula>, IRepoDetalleAsync<Pelicula, byte>
+public interface IRepoPelicula :IRepoAlta<Pelicula>,
+                                IListado<Pelicula>,
+                                IRepoDetalleAsync<Pelicula, byte>,
+                                IRepoAltaAsync<Pelicula>,
+                                IListadoAsync<Pelicula>
 {
-    IEnumerable<Actor> ActoresPelicula(byte idPelicula);
-    
-    Task AltaAsync(Pelicula elemento);
+    IEnumerable<Actor> ActoresPelicula(byte idPelicula);    
 }

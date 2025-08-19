@@ -4,12 +4,9 @@ namespace Cine.Persistencia.Dapper.Repos;
 
 public class RepoPelicula : RepoBase, IRepoPelicula
 {
-    public RepoPelicula(IDbConnection conexion) : base(conexion)
-    {
+    public RepoPelicula(IDbConnection conexion) : base(conexion) { }
 
-    }
-
-    private static DynamicParameters Alta(Pelicula pelicula)
+    private static DynamicParameters GetParametrosAlta(Pelicula pelicula)
     {
         var parametros = new DynamicParameters();
         parametros.Add("unidPelicula", direction: ParameterDirection.Output);
@@ -70,19 +67,23 @@ public class RepoPelicula : RepoBase, IRepoPelicula
         return ActoresPelicula;
     }
 
+    public void Alta(Pelicula pelicula)
+    {
+            var parametros = GetParametrosAlta(pelicula);
+            Conexion.Execute("InsPelicula", parametros);
+            pelicula.IdPelicula = parametros.Get<byte>("unidPelicula");
+    }
 
-    //--------Mtodos Asyncronicos de la interfaz----------
+    //--------Metodos Asyncronicos de la interfaz----------
 
     public async Task AltaAsync(Pelicula elemento)
     {
-        DynamicParameters parametros = Alta(elemento);
-
-        await Conexion.ExecuteAsync("InsActor", parametros);
-
-        elemento.IdPelicula = parametros.Get<byte>("xidActor");
+        DynamicParameters parametros = GetParametrosAlta(elemento);
+        await Conexion.ExecuteAsync("InsPelicula", parametros);
+        elemento.IdPelicula = parametros.Get<byte>("unidPelicula");
     }
 
-    public async Task<IEnumerable<Pelicula>> TraerElementosAsync()
+    public async Task<IEnumerable<Pelicula>> TraerElementoAsync()
     {
         var query = @"SELECT * FROM Pelicula";
         var pelicula = await Conexion.QueryAsync<Pelicula>(query);
