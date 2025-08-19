@@ -46,7 +46,54 @@ public record struct CrearActorDTO
 
 //public record struct GeneroDTO(string nombre); //no se si hace falta este 
 
+//-----------------------POST PELICULA-------------------------------------
+public record struct ListadoPeliculaDTO
+{
+    public byte Id { get; init; }
+    public string Nombre { get; init; }
+    public string Descripcion { get; init; }
+    public byte Calificacion { get; init; }
+    public TimeSpan Duracion { get; set; }
 
+    public ListadoPeliculaDTO(Pelicula pelicula) =>
+        (Id, Nombre, Descripcion, Calificacion, Duracion) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Calificacion, pelicula.Duracion);
+}
+
+//-----------------------GET DETALLE PELICULA-------------------------------------
+public record struct DetallePeliculaDTO
+{
+    public byte Id { get; init; }
+    public string Nombre { get; init; }
+    public string Descripcion { get; init; }
+    public TimeSpan Duracion { get; init; }
+    public byte Calificacion { get; init; }
+    public byte Restrincion { get; init; }
+    public UInt64 Recaudado { get; init; }
+
+    public DetallePeliculaDTO(Pelicula pelicula) =>
+        (Id, Nombre, Descripcion, Duracion, Calificacion, Restrincion, Recaudado) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Duracion, pelicula.Calificacion, pelicula.Restriccion, pelicula.Recaudado);
+}
+
+//-----------------------POST PELICULA-------------------------------------
+public record struct CrearPeliculaDTO
+{
+    public byte Id { get; init; }
+    public string Nombre { get; init; }
+    public string Descripcion { get; init; }
+    public TimeSpan Duracion { get; init; }
+    public byte Calificacion { get; init; }
+    public byte Restrincion { get; init; }
+    public UInt64 Recaudado { get; init; }
+
+    public CrearPeliculaDTO(Pelicula pelicula) =>
+        (Id, Nombre, Descripcion, Duracion, Calificacion, Restrincion, Recaudado) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Duracion, pelicula.Calificacion, pelicula.Restriccion, pelicula.Recaudado);
+}
+
+
+
+//-----------------------ESTAN EN LA API-------------------------------------
+
+//---------------------------------------------------------------
 public record struct ListadoEstudioDTO
 {
     public byte Id { get; init; }
@@ -64,18 +111,6 @@ public record struct ListadoProduccionDTO
 
     public ListadoProduccionDTO(Produccion produccion) =>
         (Id, Director_General, Productor) = (produccion.IdProduccion, produccion.Director, produccion.Productor);
-}
-
-public record struct ListadoPeliculaDTO
-{
-    public byte Id { get; init; }
-    public string Nombre { get; init; }
-    public string Descripcion { get; init; }
-    public byte Calificacion { get; init; }
-    public TimeSpan Duracion { get; set; }
-
-    public ListadoPeliculaDTO(Pelicula pelicula) =>
-        (Id, Nombre, Descripcion, Calificacion, Duracion) = (pelicula.IdPelicula, pelicula.Nombre, pelicula.Descripcion, pelicula.Calificacion, pelicula.Duracion);
 }
 
 public record struct ListadoSagaDTO
@@ -96,6 +131,9 @@ public record struct LisatdoTrailerDTO
     public LisatdoTrailerDTO(Trailer trailer) =>
         (Id, Nombre, Duracion) = (trailer.IdTrailer, trailer.Nombre, trailer.Duracion);
 }
+
+//---------------------------------------------------------------
+
 
 
 

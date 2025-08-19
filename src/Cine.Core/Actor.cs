@@ -20,9 +20,4 @@ public class Actor
     public char Sexo { get ; set ; }
     public string Nacionalidad { get ; set ; }
     public string Rol { get ; set ; }
-
-    public static implicit operator Actor(global::MinimalAPI.DTOs.CrearActorDTO v)
-    {
-        throw new NotImplementedException();
-    }
 }

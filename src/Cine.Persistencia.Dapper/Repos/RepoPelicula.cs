@@ -9,7 +9,7 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 
     }
 
-    public void Alta(Pelicula pelicula)
+    private static DynamicParameters Alta(Pelicula pelicula)
     {
         var parametros = new DynamicParameters();
         parametros.Add("unidPelicula", direction: ParameterDirection.Output);
@@ -22,9 +22,11 @@ public class RepoPelicula : RepoBase, IRepoPelicula
         parametros.Add("unarestrincion", pelicula.Restriccion);
         parametros.Add("unrecaudado", pelicula.Recaudado);
 
-        Conexion.Execute("InsPelicula", parametros);
+        //Conexion.Execute("InsPelicula", parametros);
 
-        pelicula.IdPelicula = parametros.Get<byte>("unidPelicula");
+        //pelicula.IdPelicula = parametros.Get<byte>("unidPelicula");
+
+        return parametros;
     }
 
     public IEnumerable<Pelicula> TraerElementos()
@@ -64,7 +66,33 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 
     public IEnumerable<Actor> ActoresPelicula(byte idPelicula)
     {
-        var ActoresPelicula = Conexion.Query<Actor>(queryActorPelicula, new {idPelicula = idPelicula});
-        return ActoresPelicula;   
+        var ActoresPelicula = Conexion.Query<Actor>(queryActorPelicula, new { idPelicula = idPelicula });
+        return ActoresPelicula;
+    }
+
+
+    //--------Mtodos Asyncronicos de la interfaz----------
+
+    public async Task AltaAsync(Pelicula elemento)
+    {
+        DynamicParameters parametros = Alta(elemento);
+
+        await Conexion.ExecuteAsync("InsActor", parametros);
+
+        elemento.IdPelicula = parametros.Get<byte>("xidActor");
+    }
+
+    public async Task<IEnumerable<Pelicula>> TraerElementosAsync()
+    {
+        var query = @"SELECT * FROM Pelicula";
+        var pelicula = await Conexion.QueryAsync<Pelicula>(query);
+        return pelicula;
+    }
+
+    public async Task<Pelicula?> DetalleAsync(byte id)
+    {
+        var query = @"SELECT * FROM Pelicula";
+        var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query);
+        return peliculaID;
     }
 }

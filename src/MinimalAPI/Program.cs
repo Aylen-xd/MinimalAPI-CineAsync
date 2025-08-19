@@ -86,24 +86,22 @@ app.MapPost("/genero", async (Genero xgenero, IRepoGenero repo) =>
     return Results.Created($"/genero/{xgenero.IdGenero}", xgenero);
 });
 
-app.MapPost("/actor", async (CrearActorDTO xactor, IRepoActor repo) =>
+app.MapPost("/actor", async (CrearActorDTO dto, IRepoActor repo) =>
 {
-    Actor actor = new ()
-    {
-        Nombre = xactor.Nombre,
-        Apellido = xactor.Apellido,
-        Nacionalidad = xactor.Nacionalidad,
-        Fecha_naciemiento = xactor.Fecha_naciemiento,
-        Sexo = xactor.Sexo,
-        Rol = xactor.Rol
-    };
+    Actor actor
+        = new(0, dto.Nombre, dto.Apellido, dto.Fecha_naciemiento, dto.Sexo, dto.Nacionalidad, dto.Rol);
 
     await repo.AltaAsync(actor);
 
     var actorDTO = new CrearActorDTO(actor);
 
-    return Results.Created($"/actor/{xactor.idActor}", xactor);     
+    return Results.Created($"/actor/{actor.idActor}", dto);     
 });
+
+//-----------------------------AGREGANDO PELICULA--------------------------------------
+
+
+
 
 //-----------------------------si tiene dependencia--------------------------------------
 /*
