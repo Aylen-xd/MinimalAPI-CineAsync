@@ -1,0 +1,20 @@
+﻿@using Cine.Core
+@model IEnumerable<Genero>
+@{
+
+    ViewData["Title"] = "Listado de Géneros";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>@ViewData["Title"]</h1>
+
+        <p>Listado:</p>
+        
+        @foreach (Genero genero in Model) 
+        {
+            <li>@genero.Nombre</li>
+        }
+
+    </head>
+</html>   
