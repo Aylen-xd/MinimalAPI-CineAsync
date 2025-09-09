@@ -5,14 +5,15 @@ using Cine.Core.Persistencia;
 
 namespace Cine.Core.Controllers;
 
-public class HomeController : Controller
+public class GeneroController : Controller
 {
     IRepoGenero _repoGenero;
 
-    public HomeController(IRepoGenero repoGenero) => _repoGenero = repoGenero;
+    public GeneroController(IRepoGenero repoGenero) => _repoGenero = repoGenero;
 
     public IActionResult Index() => View();
 
     [HttpGet]
     public IActionResult Genero() => View(_repoGenero.TraerElementos());
+
 }

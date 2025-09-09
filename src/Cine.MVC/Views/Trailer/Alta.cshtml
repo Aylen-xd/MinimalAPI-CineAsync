@@ -1,0 +1,27 @@
+@using Cine.MVC.VModels
+@model VMTrailer;
+@{
+    var texto = Model.Trailer != null ? Model.Trailer.Nombre : "No se pudo dar de alta el trailer";
+    ViewData["Title"] = "Alta Trailer";
+}
+
+<form asp-controller="Trailer" asp-action="Alta" method="post">
+    <div><input type="hidden" asp-for="@Model.IdTrailer" /></div>
+    <label asp-for="Nombre">Nombre:</label>
+    <input asp-for="Nombre" type="text" class="form-control" value="" />
+    <br />
+    <label>Url:</label>
+    <input type="text" name="Url" value="" />
+    <br />
+    <input type="submit" value="Guardar" />
+</form>
+<div class="row g-2 align-items-center">
+    <div class="genero">
+        <select asp-for="IdGenero" class="form-control">
+            @if (Model.IdGenero == 0)
+            {
+                <option selected="selected" value="" disabled>Seleccione un genero</option>
+            }
+        </select>
+    </div>
+</div>

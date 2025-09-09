@@ -1,0 +1,19 @@
+@using Cine.Core
+@model IEnumerable<Trailer>
+@{
+
+    ViewData["Title"] = "Alta Trailers";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>@ViewData["Title"]</h1>
+
+        <p>Listado:</p>
+        
+        @foreach (Trailer trailer in Model) 
+        {
+            <li>@trailer.Nombre</li>
+        }
+    </head>
+</html> 
