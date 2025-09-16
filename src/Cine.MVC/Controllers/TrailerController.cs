@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
-using System.Threading.Tasks;
 using Cine.MVC.VModels;
 
 namespace Cine.Core.Controllers;
@@ -15,12 +14,14 @@ public class TrailerController : Controller
     public TrailerController(IRepoTrailer repoTrailer, IRepoGenero repoGenero)
         => (_repoTrailer, _repoGenero) = (repoTrailer, repoGenero);
 
+    public IActionResult Index() => View("Listado", _repoTrailer.TraerElementos());
+
     [HttpGet]
     public async Task<IActionResult> Alta()
     {
         var generos = await _repoGenero.TraerElementosAsync();
         VMTrailer vm = new VMTrailer(generos);
-        return View();
+        return View("Upsert", vm);
     }
 
 }

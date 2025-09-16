@@ -11,19 +11,12 @@ builder.Services.AddControllersWithViews();
 
 //CON ESTE MOSTRAMOS LO DE GENEROS
 var cadena = builder.Configuration.GetConnectionString("MySQL");
+
 builder.Services.AddScoped<IDbConnection>(sp => new MySqlConnection(cadena));
 builder.Services.AddTransient<IRepoGenero, RepoGenero>();
-
-var app = builder.Build();
-
-//trailer
-var cadena2 = builder.Configuration.GetConnectionString("MySQL");
-builder.Services.AddScoped<IDbConnection>(sp => new MySqlConnection(cadena2));
 builder.Services.AddTransient<IRepoTrailer, RepoTrailer>();
 
-var app2 = builder.Build();
-
-
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

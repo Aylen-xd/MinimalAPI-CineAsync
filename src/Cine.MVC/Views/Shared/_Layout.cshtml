@@ -19,12 +19,21 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        
+                        <!--Genero-->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Genero">Genero</a>
+                            <a class="nav-link text-dark" asp-controller="Genero">Genero</a>
                         </li>
+
+                        <!--Trailer-->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Trailer">Trailer</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -38,7 +47,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Cine.MVC - <a asp-area="" asp-controller="Home" asp-action="Genero">Genero</a>
+            &copy; 2025 - Cine.MVC - <a asp-controller="Genero">Genero</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

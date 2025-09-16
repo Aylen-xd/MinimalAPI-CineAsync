@@ -1,0 +1,39 @@
+@using Cine.MVC.VModels
+@model VMTrailer;
+@{
+    var texto = Model.IdTrailer == 0 ? "Alta Trailer" : "Modificar Trailer";
+    ViewData["Title"] = texto;
+}
+
+<form asp-controller="Trailer" asp-action="Upsert" method="get">
+    <div asp-validation-summary="All"></div>
+    <div><input type="hidden" asp-for="@Model.IdTrailer" /></div>
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Nombre" class="col-form-label">Nombre</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+    </div>
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-for="IdTrailer" class="form-select">
+                @if (Model.IdTrailer == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione un pais</option>
+                }
+            </select>
+        </div>
+        <div class="col-auto">
+            @if (Model.IdTrailer == 0)
+            {
+                <button type="submit" class="btn btn-primary">@texto</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">@texto</button>
+            }
+        </div>
+    </div>
+</form>

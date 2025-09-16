@@ -9,7 +9,7 @@ public class VMTrailer
     public byte IdTrailer { get; set; }
     public byte IdPelicula { get; set; }
     public byte IdGenero { get; set; }
-    public string Nombre { get; set; }
+    public string? Nombre { get; set; }
     public TimeSpan Duracion { get; set; }
 
     public VMTrailer(IEnumerable<Genero> generos)
@@ -19,8 +19,6 @@ public class VMTrailer
                             dataValueField: nameof(Genero.IdGenero));
     }
 
-    public Trailer Trailer =>
-    
-        new Trailer(IdTrailer, IdPelicula, IdGenero, Nombre, Duracion);
-
+    public Trailer Trailer =>    
+        new Trailer (IdTrailer, IdPelicula, IdGenero, Nombre, Duracion);
 }
