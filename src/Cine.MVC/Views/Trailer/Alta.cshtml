@@ -1,5 +1,6 @@
 @using Cine.MVC.VModels
 @model VMTrailer;
+@using Cine.Core
 @{
     var texto = Model.Trailer != null ? Model.Trailer.Nombre : "No se pudo dar de alta el trailer";
     ViewData["Title"] = "Alta Trailer";
@@ -10,10 +11,7 @@
     <label asp-for="Nombre">Nombre:</label>
     <input asp-for="Nombre" type="text" class="form-control" value="" />
     <br />
-    <label>Url:</label>
-    <input type="text" name="Url" value="" />
-    <br />
-    <input type="submit" value="Guardar" />
+    
 </form>
 <div class="row g-2 align-items-center">
     <div class="genero">
@@ -21,7 +19,14 @@
             @if (Model.IdGenero == 0)
             {
                 <option selected="selected" value="" disabled>Seleccione un genero</option>
+                foreach (var genero in Model.listaGeneros)
+                {
+                    <option value="@genero.Value">@genero.Text</option>
+                }
             }
         </select>
     </div>
+    
+    <input type="submit" value="Guardar" />
+
 </div>

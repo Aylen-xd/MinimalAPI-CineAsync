@@ -1,5 +1,6 @@
 @using Cine.MVC.VModels
 @model VMTrailer;
+@using Cine.Core
 @{
     var texto = Model.IdTrailer == 0 ? "Alta Trailer" : "Modificar Trailer";
     ViewData["Title"] = texto;
@@ -21,7 +22,7 @@
             <select asp-for="IdTrailer" class="form-select">
                 @if (Model.IdTrailer == 0)
                 {
-                    <option selected="selected" value="" disabled>Seleccione un pais</option>
+                    <option selected="selected" value="" disabled>Seleccione algo</option>
                 }
             </select>
         </div>

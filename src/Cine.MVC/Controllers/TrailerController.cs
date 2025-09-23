@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
 using Cine.MVC.VModels;
+using System.Threading.Tasks;
 
 namespace Cine.Core.Controllers;
 
@@ -21,9 +22,22 @@ public class TrailerController : Controller
     {
         var generos = await _repoGenero.TraerElementosAsync();
         VMTrailer vm = new VMTrailer(generos);
-        return View("Upsert", vm);
+        return View(vm);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Alta(VMTrailer vmtrailer)
+    {
+        if (vmtrailer.IdTrailer == 0)
+        {
+            var generos =  _repoGenero.TraerElementos();
+            VMTrailer vm = new VMTrailer(generos);
+            return View(vm);
+        }
+        
+        _repoTrailer.Alta(vmtrailer.Trailer);
+        return RedirectToAction("Trailer"); 
+    }
 }
 
 
@@ -41,3 +55,30 @@ public class TrailerController : Controller
     }
     */
 
+/*
+ [HttpPost]
+    public async Task<IActionResult> Upsert(VMLiga vmLiga)
+    {
+        if (!ModelState.IsValid)
+            return View("Upsert", vmLiga);
+
+        if (vmLiga.IdLiga == 0)
+        {
+            var pais = await _unidad.RepoPais.ObtenerPorIdAsync(vmLiga.IdPais);
+            var liga = new Liga(vmLiga.NombreLiga!, pais!);
+            liga.Equipos = new List<Equipo>();
+            await _unidad.RepoLiga.AltaAsync(liga);
+        }
+
+        try
+        {
+            await _unidad.GuardarAsync();
+        }
+        catch (EntidadDuplicadaException)
+        {
+            return NotFound();
+        }
+
+        return RedirectToAction("Index", "Home");
+    }
+*/
