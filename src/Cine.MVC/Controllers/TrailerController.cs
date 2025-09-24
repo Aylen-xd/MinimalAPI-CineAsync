@@ -22,14 +22,14 @@ public class TrailerController : Controller
     {
         var generos = await _repoGenero.TraerElementosAsync();
         VMTrailer vm = new VMTrailer(generos);
-        return View(vm);
+        return View("Upsert", vm);
     }
 
     [HttpPost]
     public async Task<IActionResult> Alta(VMTrailer vmtrailer)
     {
         if (vmtrailer.IdTrailer == 0)
-        {
+        { 
             var generos =  _repoGenero.TraerElementos();
             VMTrailer vm = new VMTrailer(generos);
             return View(vm);

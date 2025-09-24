@@ -11,22 +11,21 @@
     <label asp-for="Nombre">Nombre:</label>
     <input asp-for="Nombre" type="text" class="form-control" value="" />
     <br />
-    
-</form>
-<div class="row g-2 align-items-center">
-    <div class="genero">
-        <select asp-for="IdGenero" class="form-control">
-            @if (Model.IdGenero == 0)
-            {
-                <option selected="selected" value="" disabled>Seleccione un genero</option>
-                foreach (var genero in Model.listaGeneros)
-                {
-                    <option value="@genero.Value">@genero.Text</option>
-                }
-            }
-        </select>
-    </div>
-    
-    <input type="submit" value="Guardar" />
 
-</div>
+    <div class="row g-2 align-items-center">
+        <div class="genero">
+            <select asp-for="IdGenero" class="form-control">
+                @if (Model.IdGenero == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione un genero</option>
+                    foreach (var genero in Model.listaGeneros)
+                    {
+                        <option value="@genero.Value">@genero.Text</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <input type="submit" value="Guardar" />
+    </div>
+</form>
