@@ -7,8 +7,13 @@ public class Genero
         IdGenero = idGenero;
         Nombre = nombre;
     }
+    
+    public Genero()
+    {
+        
+    }
 
-    public byte IdGenero { get ; set ; }
+    public byte IdGenero { get; set; }
     public string Nombre { get ; set ; }
     
 }

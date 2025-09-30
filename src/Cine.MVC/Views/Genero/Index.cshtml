@@ -13,7 +13,9 @@
         
         @foreach (Genero genero in Model) 
         {
-            <li>@genero.Nombre</li>
+            <li>@genero.Nombre 
+            <a asp-controller="Genero" asp-action="Modificar" asp-route-id="@genero.IdGenero">Modificar</a>
+            </li>
         }
 
     </head>

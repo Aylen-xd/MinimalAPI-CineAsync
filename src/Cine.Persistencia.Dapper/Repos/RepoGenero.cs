@@ -45,6 +45,15 @@ public class RepoGenero : RepoBase, IRepoGenero
         return generos;
     }
 
+    public void Modificar(Genero elemento)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("unidGenero", elemento.IdGenero);
+        parametros.Add("ungenero", elemento.Nombre);
+
+        Conexion.Execute("UpdGenero", parametros);
+    }
+
     //-------------------------------------------Metodo async traerelementos----------------------------------------------
     public async Task<IEnumerable<Genero>> TraerElementosAsync()
     {
@@ -63,12 +72,22 @@ public class RepoGenero : RepoBase, IRepoGenero
     }
 
     //------------------------ Metodo Async Alta -----------------------------
-        public async Task AltaAsync(Genero elemento)
+    public async Task AltaAsync(Genero elemento)
     {
         DynamicParameters parametros = ConfigurarParamestrosAltaActor(elemento);
 
         await Conexion.ExecuteAsync("InsGenero", parametros);
 
         elemento.IdGenero = parametros.Get<byte>("unidGenero");
+    }
+    
+    //------------------------ Metodo Async Modificar -----------------------------
+    public async Task ModificarAsync(Genero elemento)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("unidGenero", elemento.IdGenero);
+        parametros.Add("ungenero", elemento.Nombre);
+
+        await Conexion.ExecuteAsync("UpdGenero", parametros);
     }
 }

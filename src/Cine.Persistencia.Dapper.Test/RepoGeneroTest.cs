@@ -37,4 +37,16 @@ public class RepoGeneroTest : TestBase
         var repos = repo.DetalleAsync(1);
         Assert.NotNull(repos);
     }
+
+    [Fact]
+    public void ModificarOK()
+    {
+        var generoModificar = new Genero()
+        {
+            IdGenero = 1,
+            Nombre = "Comedia"
+        };
+
+        repo.Modificar(generoModificar);   
+    }
 }
