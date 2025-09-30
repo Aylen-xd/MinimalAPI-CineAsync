@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
 using Cine.MVC.VModels;
-using System.Threading.Tasks;
 
 namespace Cine.Core.Controllers;
 
@@ -11,9 +10,10 @@ public class TrailerController : Controller
 
     IRepoTrailer _repoTrailer;
     IRepoGenero _repoGenero;
+    IRepoPelicula _repoPeli;
 
-    public TrailerController(IRepoTrailer repoTrailer, IRepoGenero repoGenero)
-        => (_repoTrailer, _repoGenero) = (repoTrailer, repoGenero);
+    public TrailerController(IRepoTrailer repoTrailer, IRepoGenero repoGenero, IRepoPelicula repoPeli)
+        => (_repoTrailer, _repoGenero, _repoPeli) = (repoTrailer, repoGenero, repoPeli);
 
     public IActionResult Index() => View("Listado", _repoTrailer.TraerElementos());
 
@@ -21,22 +21,16 @@ public class TrailerController : Controller
     public async Task<IActionResult> Alta()
     {
         var generos = await _repoGenero.TraerElementosAsync();
-        VMTrailer vm = new VMTrailer(generos);
+        var pelis = await _repoPeli.TraerElementoAsync();
+        VMTrailer vm = new VMTrailer(generos, pelis);
         return View("Upsert", vm);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Alta(VMTrailer vmtrailer)
+    public IActionResult Upsert(VMTrailer vmtrailer)
     {
-        if (vmtrailer.IdTrailer == 0)
-        { 
-            var generos =  _repoGenero.TraerElementos();
-            VMTrailer vm = new VMTrailer(generos);
-            return View(vm);
-        }
-        
         _repoTrailer.Alta(vmtrailer.Trailer);
-        return RedirectToAction("Trailer"); 
+        return RedirectToAction(nameof(Index)); 
     }
 }
 
