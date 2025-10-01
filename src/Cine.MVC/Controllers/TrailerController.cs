@@ -30,7 +30,42 @@ public class TrailerController : Controller
     public IActionResult Upsert(VMTrailer vmtrailer)
     {
         _repoTrailer.Alta(vmtrailer.Trailer);
-        return RedirectToAction(nameof(Index)); 
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Modificar(byte? id)
+    {
+        if (id is null || id == 0)
+            return NotFound();
+
+        var trailer = await _repoTrailer.DetalleAsync(id.Value);
+
+        if (trailer is null)
+            return NotFound();
+
+        return View("Upsert", trailer);
+    }
+    
+
+    [HttpPost]
+    public async Task<IActionResult> Upsert(Trailer trailer)
+    {
+        /*if (!ModelState.IsValid)
+        return View("Upsert", genero);*/
+
+        //Preguntar si id es 0 o no ...
+        if (trailer.IdTrailer == 0)
+        {
+            _repoTrailer.Alta(trailer);
+            return RedirectToAction(nameof(Index));
+
+        }
+        else
+        {
+            await _repoTrailer.ModificarAsync(trailer);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 
