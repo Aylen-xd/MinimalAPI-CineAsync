@@ -5,6 +5,10 @@ public class RepoGenero : RepoBase, IRepoGenero
     public RepoGenero(IDbConnection conexion)
         : base(conexion) { }
 
+    static readonly string updateGen =
+        @"UPDATE Genero
+        SET Genero = @nombre
+        WHERE idGenero = @idGenero";
     private static DynamicParameters ConfigurarParamestrosAltaActor(Genero elemento)
     {
         //Vamos a declara la lista de params
@@ -47,11 +51,11 @@ public class RepoGenero : RepoBase, IRepoGenero
 
     public void Modificar(Genero elemento)
     {
-        var parametros = new DynamicParameters();
-        parametros.Add("unidGenero", elemento.IdGenero);
-        parametros.Add("ungenero", elemento.Nombre);
-
+        DynamicParameters parametros = ConfigurarParamestrosAltaActor(elemento);
+        //var query = @"UPDATE Genero SET Genero = @nombre where idGenero = @idGenero";
         Conexion.Execute("UpdGenero", parametros);
+
+        //elemento.IdGenero = parametros.Get<byte>("unidGenero");
     }
 
     //-------------------------------------------Metodo async traerelementos----------------------------------------------
@@ -80,14 +84,16 @@ public class RepoGenero : RepoBase, IRepoGenero
 
         elemento.IdGenero = parametros.Get<byte>("unidGenero");
     }
-    
-    //------------------------ Metodo Async Modificar -----------------------------
-    public async Task ModificarAsync(Genero elemento)
-    {
-        var parametros = new DynamicParameters();
-        parametros.Add("unidGenero", elemento.IdGenero);
-        parametros.Add("ungenero", elemento.Nombre);
 
-        await Conexion.ExecuteAsync("UpdGenero", parametros);
+    //------------------------ Metodo Async Modificar -----------------------------
+
+    public async Task ModificarAsync(Genero genero)
+    {
+        var parametros = new
+        {
+            idGenero = genero.IdGenero,
+            nombre = genero.Nombre
+        };
+        await Conexion.ExecuteAsync(updateGen, parametros);
     }
 }

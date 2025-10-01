@@ -36,6 +36,26 @@ call InsGenero  (@idGFamiliar, 'Familiar') $$
 call InsGenero  (@idGAccion, 'Accion') $$
 call InsGenero  (@idGAventura, 'Aventura infantil') $$
 
+-- Update de Genero
+DELIMITER $$
+drop procedure if exists UpdGenero $$
+create procedure UpdGenero (in unidGenero tinyint unsigned,
+                            in unGenero varchar(30))    
+begin
+    update Genero
+
+    SET Genero = unGenero
+    where idGenero = unidGenero;
+
+end $$
+call UpdGenero (@idGFiccion, 'Ciencia Ficcion') $$
+call UpdGenero (@idGFantasia, 'Fantasia/Animacion') $$
+CALL UpdGenero (@idGFamiliar, 'Familiar/Infantil') $$
+call UpdGenero (@idGAccion, 'Accion/Aventura') $$
+CALL UpdGenero (@idGAventura, 'Aventura/Menores') $$
+
+-- -----------------------------------
+
 -- Insert en Produccion:
 Delimiter $$
 drop procedure if exists InsProduccion $$
