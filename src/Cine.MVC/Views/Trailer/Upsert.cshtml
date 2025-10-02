@@ -1,5 +1,5 @@
 @using Cine.MVC.VModels
-@model VMTrailer;
+@model Cine.MVC.VModels.VMTrailer;
 
 @using Cine.Core
 @{
@@ -13,16 +13,16 @@
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="Nombre" class="col-form-label">Titulo Trailer</label>
+            <label asp-for="Trailer.Nombre" class="col-form-label">Titulo Trailer</label>
         </div>
         <div class="col-auto">
-            <input asp-for="Nombre" class="form-control" />
+            <input asp-for="Trailer.Nombre" class="form-control" />
         </div>
     </div>
 
         <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <select asp-items="Model.listaGeneros" asp-for="IdGenero" class="form-select">
+            <select asp-items="Model.listaGeneros" asp-for="Trailer.IdGenero" class="form-select">
                 @if (Model.IdGenero == 0)
                 {
                     <option selected="selected" value="" disabled>Seleccione un genero</option>
@@ -32,7 +32,7 @@
 
         <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <select asp-items="Model.listaPelicula" asp-for="IdPelicula" class="form-select">
+            <select asp-items="Model.listaPelicula" asp-for="Trailer.IdPelicula" class="form-select">
                 @if (Model.IdPelicula == 0)
                 {
                     <option selected="selected" value="" disabled>Seleccione una pelicula</option>
@@ -42,10 +42,10 @@
 
         <div class="row g-2 align-items-center">
             <div class="col-auto">
-                <label asp-for="Duracion" class="col-form-label">Duracion</label>
+                <label asp-for="Trailer.Duracion" class="col-form-label">Duracion</label>
             </div>
             <div class="col-auto">
-                <input type="time" asp-for="Duracion" class="form-control" />
+                <input type="time" asp-for="Trailer.Duracion" class="form-control" />
             </div>
         </div>
 

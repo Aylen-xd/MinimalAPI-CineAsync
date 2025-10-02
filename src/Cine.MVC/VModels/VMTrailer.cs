@@ -12,6 +12,9 @@ public class VMTrailer
     public byte IdGenero { get; set; }
     public string? Nombre { get; set; }
     public TimeSpan Duracion { get; set; }
+    public Trailer Trailer { get; set; } = new Trailer();
+
+    //public Cine.Core.Trailer Trailer { get; set; }
 
     public VMTrailer(IEnumerable<Genero> generos, IEnumerable<Pelicula> peliculas)
     {
@@ -24,8 +27,8 @@ public class VMTrailer
                             dataValueField: nameof(Pelicula.IdPelicula));
     }
 
-    public Trailer Trailer =>
-        new Trailer(IdTrailer, IdPelicula, IdGenero, Nombre, Duracion);
+    //public Trailer Trailer =>
+     //   new Trailer(IdTrailer, IdPelicula, IdGenero, Nombre, Duracion);
 
 
     /// Lista de opciones de generos Y PELICULAS para trailer
@@ -55,4 +58,5 @@ public class VMTrailer
     }
 
     public VMTrailer() { }
+
 }

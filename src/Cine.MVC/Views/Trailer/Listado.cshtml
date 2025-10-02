@@ -1,5 +1,6 @@
 @using Cine.Core
 @model IEnumerable<Trailer>
+@using Cine.MVC.VModels
 @{
 
     ViewData["Title"] = "Listado Trailers";
@@ -13,7 +14,9 @@
         
         @foreach (Trailer trailer in Model) 
         {
-            <li>@trailer.Nombre</li>
+            <li>@trailer.Nombre
+            <a asp-controller="Trailer" asp-action="Modificar" asp-route-id="@trailer.IdTrailer">Modificar</a>
+            </li>
         }
     </head>
 </html> 

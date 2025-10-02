@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
 using Cine.MVC.VModels;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Cine.Core.Controllers;
 
@@ -26,12 +27,12 @@ public class TrailerController : Controller
         return View("Upsert", vm);
     }
 
-    [HttpPost]
+    /*[HttpPost]
     public IActionResult Upsert(VMTrailer vmtrailer)
     {
         _repoTrailer.Alta(vmtrailer.Trailer);
         return RedirectToAction(nameof(Index));
-    }
+    }*/
 
     [HttpGet]
     public async Task<IActionResult> Modificar(byte? id)
@@ -44,16 +45,24 @@ public class TrailerController : Controller
         if (trailer is null)
             return NotFound();
 
-        return View("Upsert", trailer);
-    }
-    
+        VMTrailer vmTrailer = new VMTrailer
+        {
+            Trailer = trailer
+        };
 
-    [HttpPost]
+        vmTrailer.IdTrailer = trailer.IdTrailer;
+        vmTrailer.IdPelicula = trailer.IdPelicula;
+        vmTrailer.IdGenero = trailer.IdGenero;
+        vmTrailer.Nombre = trailer.Nombre;
+        vmTrailer.Duracion = trailer.Duracion;
+
+        return View("Upsert", vmTrailer);
+    }
+
+
+    /*[HttpPost]
     public async Task<IActionResult> Upsert(Trailer trailer)
     {
-        /*if (!ModelState.IsValid)
-        return View("Upsert", genero);*/
-
         //Preguntar si id es 0 o no ...
         if (trailer.IdTrailer == 0)
         {
@@ -66,13 +75,30 @@ public class TrailerController : Controller
             await _repoTrailer.ModificarAsync(trailer);
             return RedirectToAction(nameof(Index));
         }
+    }*/
+
+    [HttpPost]
+    public async Task<IActionResult> Upsert(VMTrailer vmtrailer)
+    {
+        if (vmtrailer.IdTrailer == 0)
+        {
+            _repoTrailer.Alta(vmtrailer.Trailer);
+            return RedirectToAction(nameof(Index));
+
+        }
+        else
+        {
+            await _repoTrailer.ModificarAsync(vmtrailer.Trailer);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 
 
 
 
-
+        /*if (!ModelState.IsValid)
+        return View("Upsert", genero);*/
 
 
 /*

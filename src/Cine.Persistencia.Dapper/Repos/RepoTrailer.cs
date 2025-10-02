@@ -17,12 +17,7 @@ public class RepoTrailer : RepoBase, IRepoTrailer
         WHERE idTrailer = @idTrailer";
 
     //------------------------- Metodo Alta -----------------------------//
-    public void Alta(Trailer trailer)
-    {
-        DynamicParameters parametros = Trailerparametros(trailer);
-        Conexion.Execute("InsTrailer", parametros);
-        trailer.IdTrailer = parametros.Get<byte>("unidTrailer");
-    }
+
     public static DynamicParameters Trailerparametros(Trailer trailer)
     {
         var parametros = new DynamicParameters();
@@ -34,10 +29,17 @@ public class RepoTrailer : RepoBase, IRepoTrailer
 
         //Conexion.Execute("InsTrailer", parametros);
 
-        trailer.IdTrailer = parametros.Get<byte>("unidTrailer");
+        //trailer.IdTrailer = parametros.Get<byte>("unidTrailer");
 
         return parametros;
     }
+
+        public void Alta(Trailer trailer)
+    {
+        DynamicParameters parametros = Trailerparametros(trailer);
+        Conexion.Execute("InsTrailer", parametros);
+        trailer.IdTrailer = parametros.Get<byte>("unidTrailer");
+    } 
 
     public IEnumerable<Trailer> TraerElementos()
     {
