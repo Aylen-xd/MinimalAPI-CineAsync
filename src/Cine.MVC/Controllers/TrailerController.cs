@@ -45,10 +45,14 @@ public class TrailerController : Controller
         if (trailer is null)
             return NotFound();
 
-        VMTrailer vmTrailer = new VMTrailer
-        {
-            Trailer = trailer
-        };
+        //VMTrailer vmTrailer = new VMTrailer();
+
+        var generos = await _repoGenero.TraerElementosAsync();
+        var pelis = await _repoPeli.TraerElementoAsync();
+
+        VMTrailer vmTrailer = new VMTrailer(generos, pelis);
+
+        vmTrailer.Trailer = trailer;
 
         vmTrailer.IdTrailer = trailer.IdTrailer;
         vmTrailer.IdPelicula = trailer.IdPelicula;
@@ -88,13 +92,13 @@ public class TrailerController : Controller
         }
         else
         {
+            vmtrailer.Trailer.IdTrailer = vmtrailer.IdTrailer;
+
             await _repoTrailer.ModificarAsync(vmtrailer.Trailer);
             return RedirectToAction(nameof(Index));
         }
     }
 }
-
-
 
 
         /*if (!ModelState.IsValid)

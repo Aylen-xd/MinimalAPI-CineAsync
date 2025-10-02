@@ -43,9 +43,7 @@ public class VMTrailer
                             dataValueField: nameof(Pelicula));
     }
 
-
-
-    public VMTrailer(IEnumerable<Genero> generos, Trailer? trailer)
+    /*public VMTrailer(IEnumerable<Genero> generos, Trailer? trailer)
     {
         listaGeneros = new(generos,
                             dataTextField: nameof(Genero.Nombre),
@@ -55,7 +53,7 @@ public class VMTrailer
         IdGenero = Trailer.IdGenero;
         Nombre = Trailer.Nombre;
         Duracion = Trailer.Duracion;
-    }
+    }*/
 
     public VMTrailer() { }
 
