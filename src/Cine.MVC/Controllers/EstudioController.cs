@@ -26,7 +26,7 @@ public class EstudioController : Controller
         if (estudio is null)
             return NotFound();
 
-        return View("Upsert", estudio);
+        return View("Upsert", estudio); 
     }
 
     [HttpPost]
