@@ -36,6 +36,23 @@ call InsGenero  (@idGFamiliar, 'Familiar') $$
 call InsGenero  (@idGAccion, 'Accion') $$
 call InsGenero  (@idGAventura, 'Aventura infantil') $$
 
+DELIMITER $$
+DROP PROCEDURE if EXISTS UpdEstudio $$
+CREATE PROCEDURE UpdEstudio (in unidEstudio tinyint unsigned,
+                            in unNombre varchar(15),
+                            in unFundacion date)
+BEGIN
+    UPDATE Estudio
+    SET nombre = unNombre,
+        fundacion = unFundacion
+    WHERE idEstudio = unidEstudio;
+END $$
+
+CALL UpdEstudio (@idEstudioDisney, 'Walt Disney', '1923-10-23') $$
+CALL UpdEstudio (@idEstudioDream, 'DreamWorks', '1994-10-12') $$
+CALL UpdEstudio (@idEstudioWarner, 'Warner Bros', '1923-04-04') $$
+CALL UpdEstudio (@idEstudioGhibli, 'Studio Ghibli', '1985-06-15') $$    
+
 -- Update de Genero
 DELIMITER $$
 drop procedure if exists UpdGenero $$
