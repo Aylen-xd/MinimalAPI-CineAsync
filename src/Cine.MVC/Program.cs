@@ -16,6 +16,7 @@ builder.Services.AddScoped<IDbConnection>(sp => new MySqlConnection(cadena));
 builder.Services.AddTransient<IRepoGenero, RepoGenero>();
 builder.Services.AddTransient<IRepoTrailer, RepoTrailer>();
 builder.Services.AddTransient<IRepoPelicula, RepoPelicula>();
+builder.Services.AddTransient<IRepoEstudio, RepoEstudio>();
 
 var app = builder.Build();
 

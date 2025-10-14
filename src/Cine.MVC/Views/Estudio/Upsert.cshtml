@@ -1,0 +1,35 @@
+@using Cine.MVC.VModels
+@model Estudio
+@using Cine.Core
+
+@{
+    var texto = Model is null ? "Alta Estudio" : "Modificar Estudio";
+    ViewData["Title"] = texto;
+}
+
+
+<form asp-controller="Estudio" asp-action="Upsert" method="post">
+    <div asp-validation-summary="All"></div>
+    <div><input type="hidden" asp-for="@Model.IdEstudio" /></div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Nombre" class="col-form-label">Nombre Estudio</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+    </div>
+
+    <div class="col-auto">
+            @if (Model is null)
+            {
+                <button type="submit" class="btn btn-primary">@texto</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">@texto</button>
+            }
+        </div>
+    </div>
+</form>
