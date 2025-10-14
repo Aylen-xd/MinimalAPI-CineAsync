@@ -10,7 +10,7 @@ public class EstudioController : Controller
 
     public EstudioController(IRepoEstudio repoEstudio) => _repoEstudio = repoEstudio;
 
-    public IActionResult Indedx() => View(_repoEstudio.TraerElementos());
+    public IActionResult Listado() => View(_repoEstudio.TraerElementos());
 
     [HttpGet]
     public async Task<IActionResult> Alta() => View("Upsert");
