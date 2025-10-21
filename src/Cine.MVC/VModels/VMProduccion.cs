@@ -2,7 +2,6 @@ using Cine.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cine.MVC.VModels;
-
 public class VMProduccion
 {
     public SelectList listaEstudios;
@@ -16,7 +15,7 @@ public class VMProduccion
     public string? Vestuario { get; set; }
     public decimal Presupuesto { get; set; }
 
-    //public Produccion produccion { get; set; } = new Produccion();
+    public Produccion produccion { get; set; } = new Produccion();
 
     public VMProduccion(IEnumerable<Estudio> estudios)
     {

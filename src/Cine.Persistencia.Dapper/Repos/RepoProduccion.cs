@@ -23,7 +23,7 @@ public class RepoProduccion : RepoBase, IRepoProduccion
         var parametros = new DynamicParameters();
         parametros.Add("unidProduccion", direction: ParameterDirection.Output);
         parametros.Add("unidEstudio", produccion.IdEstudio);
-        parametros.Add("unDirector_General", produccion.Director);
+        parametros.Add("unDirector_General", produccion.Director_General);
         parametros.Add("unGuion", produccion.Guion);
         parametros.Add("unProductor", produccion.Productor);
         parametros.Add("unVestuario", produccion.Vestuario);
@@ -105,7 +105,7 @@ public class RepoProduccion : RepoBase, IRepoProduccion
         var parametros = new
         {
             idProduccion = produccion.IdProduccion,
-            director = produccion.Director,
+            director = produccion.Director_General,
             guion = produccion.Guion,
             productor = produccion.Productor,
             vestuario = produccion.Vestuario,

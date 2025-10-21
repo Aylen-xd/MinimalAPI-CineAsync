@@ -13,7 +13,7 @@
         
         @foreach (Produccion produccion in Model) 
         {
-            <li>@produccion.Director
+            <li>@produccion.Director_General
             <a asp-controller="Produccion" asp-action="Modificar" asp-route-id="@produccion.IdProduccion">Modificar</a>
             </li>
         }

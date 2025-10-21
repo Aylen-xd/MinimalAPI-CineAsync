@@ -8,7 +8,7 @@ public class Produccion
         IdProduccion = idProduccion;
         IdEstudio = idEstudio ;
         Productor = productor ;
-        Director = Director_General ;
+        Director_General = Director_General ;
         Guion = guion ;
         Vestuario = vestuario ;
         Sonido = sonido ;
@@ -19,11 +19,16 @@ public class Produccion
     public byte IdProduccion { get ; set ;}
     public byte IdEstudio { get ; set ; }
     public string Productor { get ; set ; }
-    public string Director { get ; set ;}
+    public string Director_General { get ; set ;}
     public string Guion { get ; set ; }
     public string Vestuario { get ; set ; }
     public string Sonido { get ; set ; }
     public string Musica { get ; set ; }
-    public decimal Presupuesto { get ; set ; } = 0;
+    public decimal Presupuesto { get; set; } = 0;
+    
+    public Produccion()
+    {
+
+    }
 
 }

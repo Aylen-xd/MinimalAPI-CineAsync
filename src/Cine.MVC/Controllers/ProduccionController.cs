@@ -10,7 +10,11 @@ public class ProduccionController : Controller
     IRepoProduccion _repoProduccion;
     IRepoEstudio _repoEstudio;
 
-    public ProduccionController(IRepoProduccion repoProduccion) => _repoProduccion = repoProduccion;
+    public ProduccionController(IRepoProduccion repoProduccion, IRepoEstudio repoEstudio)
+    {
+        _repoProduccion = repoProduccion;
+        _repoEstudio = repoEstudio;
+    }
 
     public IActionResult Listado() => View(_repoProduccion.TraerElementos());
 
@@ -30,29 +34,46 @@ public class ProduccionController : Controller
 
         var produccion = await _repoProduccion.DetalleAsync(id.Value);
 
+        var estudios = await _repoEstudio.TraerElementosAsync();
+
         if (produccion is null)
             return NotFound();
 
-        return View("Upsert", produccion);
+        VMProduccion vmProduccion = new VMProduccion(estudios);
+
+        vmProduccion.IdProduccion = produccion.IdProduccion;
+
+        vmProduccion.IdEstudio = produccion.IdEstudio;
+        vmProduccion.Director_General = produccion.Director_General;
+        vmProduccion.Productor = produccion.Productor;
+        vmProduccion.Guion = produccion.Guion;
+        vmProduccion.Musica = produccion.Musica;
+        vmProduccion.Sonido = produccion.Sonido;
+        vmProduccion.Vestuario = produccion.Vestuario;
+        vmProduccion.Presupuesto = produccion.Presupuesto;
+
+        return View("Upsert", vmProduccion);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Upsert(Produccion produccion)
+    public async Task<IActionResult> Upsert(VMProduccion vmproduccion)
     {
         /*if (!ModelState.IsValid)
         return View("Upsert", produccion);*/
 
         //Preguntar si id es 0 o no ...
-        if (produccion.IdProduccion == 0)
+        if (vmproduccion.IdProduccion == 0)
         {
-            _repoProduccion.Alta(produccion);
-            return RedirectToAction(nameof(Index));
+            _repoProduccion.Alta(vmproduccion.produccion);
+            return RedirectToAction(nameof(Listado));
 
         }
         else
         {
-            await _repoProduccion.ModificarAsync(produccion);
-            return RedirectToAction(nameof(Index));
+            vmproduccion.produccion.IdProduccion = vmproduccion.IdProduccion;
+
+            await _repoProduccion.ModificarAsync(vmproduccion.produccion);
+            return RedirectToAction(nameof(Listado));
         }
     }
 }
