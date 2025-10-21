@@ -1,4 +1,4 @@
--- Active: 1729186022063@@127.0.0.1@3306@5to_Pelicula
+-- Active: 1755627539573@@127.0.0.1@3306@5to_pelicula
 Use 5to_Pelicula ;
 SELECT 'Creando SPs' Estado ;
 /*Store procedure*/
@@ -38,17 +38,17 @@ call InsGenero  (@idGAventura, 'Aventura infantil') $$
 
 DELIMITER $$
 DROP PROCEDURE if EXISTS UpdEstudio $$
-CREATE PROCEDURE UpdEstudio (in unidEstudio tinyint unsigned,
-                            in unNombre varchar(15),
-                            in unFundacion date)
+CREATE PROCEDURE UpdEstudio (in xidEstudio tinyint unsigned,
+                            in xNombre varchar(15),
+                            in xFundacion date)
 BEGIN
     UPDATE Estudio
-    SET nombre = unNombre,
-        fundacion = unFundacion
-    WHERE idEstudio = unidEstudio;
+    SET nombre = xNombre,
+        fundacion = xFundacion
+    WHERE idEstudio = xidEstudio;
 END $$
 
-CALL UpdEstudio (@idEstudioDisney, 'Walt Disney', '1923-10-23') $$
+CALL UpdEstudio (@idEstudioDisney, 'Walt disney', '1923-10-23') $$
 CALL UpdEstudio (@idEstudioDream, 'DreamWorks', '1994-10-12') $$
 CALL UpdEstudio (@idEstudioWarner, 'Warner Bros', '1923-04-04') $$
 CALL UpdEstudio (@idEstudioGhibli, 'Studio Ghibli', '1985-06-15') $$    

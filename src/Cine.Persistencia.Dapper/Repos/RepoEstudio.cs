@@ -7,6 +7,12 @@ public class RepoEstudio:RepoBase, IRepoEstudio
     public RepoEstudio(IDbConnection conexion)
         : base(conexion) { }
 
+    static readonly string updEstudio =
+        @"UPDATE Estudio
+        SET nombre = @nombre,
+            fundacion = @fundacion
+        WHERE idEstudio = @idEstudio";
+
     public static DynamicParameters EstudioParametros(Estudio estudio)
     {
         var parametros = new DynamicParameters();
@@ -96,7 +102,7 @@ public class RepoEstudio:RepoBase, IRepoEstudio
             elemento.Nombre,
             elemento.Fundacion
         };
-        await Conexion.ExecuteAsync("UpdEstudio", parametros);
+        await Conexion.ExecuteAsync(updEstudio, parametros);
     
     }
 

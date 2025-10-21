@@ -34,13 +34,13 @@ public class EstudioController : Controller
     {
         if (estudio.IdEstudio == 0)
         {
-            _repoEstudio.Alta(estudio);
-            return RedirectToAction(nameof(Index));
+            await _repoEstudio.AltaAsync(estudio);
+            return RedirectToAction(nameof(Listado));
         }
         else
         {
             await _repoEstudio.ModificarAsync(estudio);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Listado));
         }
     }
 }
