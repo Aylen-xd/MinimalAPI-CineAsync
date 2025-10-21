@@ -34,10 +34,10 @@ public class ProduccionController : Controller
 
         var produccion = await _repoProduccion.DetalleAsync(id.Value);
 
-        var estudios = await _repoEstudio.TraerElementosAsync();
-
         if (produccion is null)
             return NotFound();
+        
+        var estudios = await _repoEstudio.TraerElementosAsync(); 
 
         VMProduccion vmProduccion = new VMProduccion(estudios);
 

@@ -3,7 +3,7 @@
 @using Cine.Core
 
 @{
-    var texto = Model is null ? "Alta Produccion" : "Modificar Produccion";
+    var texto = Model.IdProduccion == 0? "Alta Produccion" : "Modificar Produccion";
     ViewData["Title"] = texto;
 }
 
