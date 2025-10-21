@@ -71,6 +71,32 @@ CALL UpdGenero (@idGFamiliar, 'Familiar/Infantil') $$
 call UpdGenero (@idGAccion, 'Accion/Aventura') $$
 CALL UpdGenero (@idGAventura, 'Aventura/Menores') $$
 
+--upd Produccion
+DELIMITER $$
+drop procedure if exists UpdProduccion $$
+create procedure UpdProduccion (in unidProduccion tinyint unsigned,
+                                in unDirector_General varchar (50),
+                                in unGuion varchar (100),
+                                in unProductor varchar(100),
+                                in unVestuario varchar (100),
+                                in unSonido varchar (100),
+                                in unaMusica varchar (100),
+                                in unPresupuesto decimal)
+begin
+    update Produccion
+
+    set Director_General = unDirector_General,
+        Guion = unGuion,
+        Productor = unProductor,
+        Vestuario = unVestuario,
+        Sonido = unSonido,
+        Musica = unaMusica,
+        Presupuesto = unPresupuesto
+    where idProduccion = unidProduccion;
+END $$
+CALL UpdProduccion (@idProduFrozen, 'Chris Buck - Jennifer Lee', ' Peter Del Vecho - Jhon Lasseter', ' Edith Head - Hubert de Givenchy', 'Jennifer Lee', 'Odin Benitez', 'Christophe Beck - Armando Perez - Kristen Anderson Lopez', 160000000) $$
+CALL UpdProduccion (@idProduInterestelar, 'Christopher Nolan', 'Emma Thomas-Christopher Nolan-Lynda Obst', 'Mary Zophres', 'Jonathan Nolan-Christopher Nolan', 'Hoyte van Hoytema', 'Hans Zimmer', 170000000) $$
+
 -- -----------------------------------
 
 -- Insert en Produccion:
@@ -94,6 +120,7 @@ end $$
 Call InsProduccion (@idProduFrozen, @idEstudioDisney, 'Chris Buck-Jennifer Lee', ' Peter Del Vecho - Jhon Lasseter', ' Edith Head - Hubert de Givenchy', 'Jennifer Lee', 'Odin Benitez', 'Christophe Beck - Armando Perez - Kristen Anderson Lopez', 150000000) $$
 Call InsProduccion  (@idProduFrozen2, @idEstudioDisney, 'Chris Buck - Jennifer Lee', ' Peter Del Vecho', ' Edith Head - Hubert de Givenchy', 'Jennifer Lee', 'Aurora Aksnes', 'Kristen Anderson Lopez', 150000000) $$
 Call InsProduccion  (@idProduInterestelar, @idEstudioWarner, 'Christopher Nolan', 'Emma Thomas-Christopher Nolan-Lynda Obst', 'Mary Zophres', 'Jonathan Nolan-Christopher Nolan', 'Hoyte van Hoytema', 'Hans Zimmer', 165000000) $$
+
 
 DELIMITER $$
 drop procedure if exists InsActor $$

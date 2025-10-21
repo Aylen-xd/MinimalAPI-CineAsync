@@ -1,0 +1,22 @@
+@using Cine.Core
+@model IEnumerable<Produccion>
+@using Cine.MVC.VModels
+@{
+    ViewData[index:"Title"] = "Listado de Producciones";
+}
+<!DOCTYPE html>
+<html>
+<head>
+        <h1>@ViewData["Title"]</h1>
+
+        <p>Listado:</p>
+        
+        @foreach (Produccion produccion in Model) 
+        {
+            <li>@produccion.Director
+            <a asp-controller="Produccion" asp-action="Modificar" asp-route-id="@produccion.IdProduccion">Modificar</a>
+            </li>
+        }
+        
+    </head>
+</html>   
