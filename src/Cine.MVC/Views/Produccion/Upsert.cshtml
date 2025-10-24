@@ -2,14 +2,17 @@
 @model VMProduccion
 @using Cine.Core
 
+
 @{
     var texto = Model.IdProduccion == 0? "Alta Produccion" : "Modificar Produccion";
     ViewData["Title"] = texto;
 }
 
+
 <form asp-controller="Produccion" asp-action="Upsert" method="post">
     <div asp-validation-summary="All"></div>
     <div><input type="hidden" asp-for="@Model.IdProduccion" /></div>
+
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
@@ -19,6 +22,91 @@
             <input asp-for="Director_General" class="form-control" />
         </div>
     </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Productor" class="col-form-label">Productor</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Productor" class="form-control" />
+        </div>
+    </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Guion" class="col-form-label">Guionista</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Guion" class="form-control" />
+        </div>
+    </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+<div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Musica" class="col-form-label">Encargado de la musica</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Musica" class="form-control" />
+        </div>
+    </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+<div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Sonido" class="col-form-label">Sonidista</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Sonido" class="form-control" />
+        </div>
+    </div>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+<div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Vestuario" class="col-form-label">Vestorista</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Vestuario" class="form-control" />
+        </div>
+    </div>
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+<div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Presupuesto" class="col-form-label">Presupuesto</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Presupuesto" class="form-control" />
+        </div>
+    </div> <br></br>
+
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-items="Model.listaEstudios" asp-for="IdEstudio" class="form-select">
+                @if (Model.IdEstudio == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione un Estudio</option>
+                }
+            </select>
+        </div>
+
 
     <div class="col-auto">
             @if (Model is null)

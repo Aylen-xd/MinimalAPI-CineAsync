@@ -15,7 +15,10 @@ public class VMProduccion
     public string? Vestuario { get; set; }
     public decimal Presupuesto { get; set; }
 
-    public Produccion produccion { get; set; } = new Produccion();
+    //public Produccion produccion { get; set; } = new Produccion();
+
+    public Produccion produccion =>
+    new Produccion(IdProduccion, IdEstudio, Director_General, Guion, Productor, Vestuario, Sonido, Presupuesto, Musica);
 
     public VMProduccion(IEnumerable<Estudio> estudios)
     {
