@@ -18,6 +18,9 @@ builder.Services.AddTransient<IRepoTrailer, RepoTrailer>();
 builder.Services.AddTransient<IRepoPelicula, RepoPelicula>();
 builder.Services.AddTransient<IRepoEstudio, RepoEstudio>();
 builder.Services.AddTransient<IRepoProduccion, RepoProduccion>();
+builder.Services.AddTransient<IRepoSaga, RepoSaga>();
+//builder.Services.AddTransient<IRepoActor, RepoActor>();
+//builder.Services.AddTransient<IRepoPelicula, RepoPelicula>();
 
 var app = builder.Build();
 

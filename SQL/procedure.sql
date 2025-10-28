@@ -227,6 +227,26 @@ END $$
 CALL insSaga (@idSagaFrozen_1, 1 ,@idPeliFrozen, 'Frozen una aventura congelada') $$
 CALL insSAga (@idSagaFrozen_2, 1 ,@idPeliFrozen2, 'Frozen 2') $$
 
+---Modifocar
+
+DELIMITER $$
+
+drop PROCEDURE if EXISTS UpdSaga $$
+CREATE PROCEDURE UpdSaga(out unidsaga TINYINT UNSIGNED,
+                            unNumero_Saga TINYINT UNSIGNED,
+                            unidpelicula MEDIUMINT unsigned,
+                            unnombre varchar(50))
+begin 
+        update Saga
+        set Numero_Saga = unNumero_Saga,
+            idPelicula = unidPelicula,
+            Nombre = unnombre
+        where IdSaga = unidsaga ;
+    COMMIT;
+END $$
+CALL UpdSaga (@idSagaFrozen_1, 1 ,@idPeliFrozen, 'Frozen una aventura congelada') $$
+CALL UpdSaga (@idSagaFrozen_2, 1 ,@idPeliFrozen2, 'Frozen 2') $$
+
 delimiter $$
 drop procedure if exists InsActPeli $$
 create PROCEDURE InsActPeli (unidActor TINYINT UNSIGNED, unidPelicula TINYINT UNSIGNED, unRol VARCHAR(50))

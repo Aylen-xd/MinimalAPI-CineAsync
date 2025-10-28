@@ -1,0 +1,53 @@
+@using Cine.MVC.VModels
+@model Cine.MVC.VModels.VMSaga;
+@using Cine.Core
+@{
+    var texto = Model.IdSaga == 0 ? "Alta Saga" : "Modificar Saga";
+    ViewData["Title"] = texto;
+}
+
+<form asp-controller="Saga" asp-action="Upsert" method="post">
+    <div asp-validation-summary="All"></div>
+    <div><input type="hidden" asp-for="@Model.IdSaga" /></div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="saga.NombreSaga" class="col-form-label">Titulo Saga</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="saga.NombreSaga" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center"></div>
+        <div class="col-auto">
+            <label asp-for="saga.NSaga" class="col-form-label">Numero Saga</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="saga.NSaga" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-items="Model.listaPelicula" asp-for="saga.IdPelicula" class="form-select">
+                @if (Model.IdPelicula == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione una pelicula</option>
+                }
+            </select>
+        </div>
+
+
+        <div class="col-auto">
+            @if (Model.IdSaga == 0)
+            {
+                <button type="submit" class="btn btn-primary">@texto</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">@texto</button>
+            }
+        </div>
+    </div>
+</form>
