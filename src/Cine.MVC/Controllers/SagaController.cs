@@ -35,8 +35,9 @@ public class SagaController : Controller
 
         var peliculas = await _repoPeli.TraerElementoAsync();
 
-        VMSaga vmSaga = new VMSaga(peliculas); 
+        VMSaga vmSaga = new VMSaga(peliculas);
 
+        vmSaga.Saga = saga;
         vmSaga.IdSaga = saga.IdSaga;
         vmSaga.IdPelicula = saga.IdPelicula;
         vmSaga.Nombre = saga.NombreSaga;

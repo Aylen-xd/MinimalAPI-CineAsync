@@ -30,7 +30,7 @@ public class RepoSaga : RepoBase, IRepoSaga
 
     public IEnumerable<Saga> TraerElementos()
     {
-        var query = @"SELECT * FROM Saga";
+        var query = @"SELECT IdSaga, Numero_Saga AS NSaga, idPelicula, Nombre AS NombreSaga FROM Saga";
         var saga = Conexion.Query<Saga>(query);
         return saga;
     }
@@ -73,13 +73,13 @@ public class RepoSaga : RepoBase, IRepoSaga
     public async Task<Saga?> DetalleAsync(byte id)
     {
         var Query = @"SELECT * FROM Saga where IdSaga = @unidsaga";
-        var SagaID = await Conexion.QuerySingleOrDefaultAsync<Saga>(Query, new { idSaga = id });
+        var SagaID = await Conexion.QuerySingleOrDefaultAsync<Saga>(Query, new { unidsaga = id });
         return SagaID;
     }
 
     public async Task<IEnumerable<Saga>> TraerElementosAsync()
     {
-        var query = @"SELECT * FROM Saga";
+        var query = @"SELECT IdSaga, Numero_Saga AS NSaga, idPelicula, Nombre AS NombreSaga FROM Saga";
         var saga = await Conexion.QueryAsync<Saga>(query);
         return saga; 
     }

@@ -15,7 +15,7 @@
         @foreach (Saga saga in Model) 
         {
             <li>@saga.NombreSaga
-            <a asp-controller="Saga" asp-action="Modificar" asp-route-id="@saga.NombreSaga">Modificar</a>
+            <a asp-controller="Saga" asp-action="Modificar" asp-route-id="@saga.IdSaga">Modificar</a>
             </li>
         }
     </head>

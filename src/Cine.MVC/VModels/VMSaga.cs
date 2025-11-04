@@ -13,16 +13,22 @@ public class VMSaga
     public byte NSaga { get; set; }
 
     public Saga Saga { get; set; } = new Saga();
-    
-/*
-        public Saga Saga =>
-        new Saga(IdSaga, IdPelicula, NSaga, Nombre);
-    */
-    public VMSaga(IEnumerable<Pelicula> peliculas)
+
+    /*
+            public Saga Saga =>
+            new Saga(IdSaga, IdPelicula, NSaga, Nombre);
+        */
+    public VMSaga(IEnumerable<Pelicula> peliculas, byte? idPelicula = null)
     {
-        listaPelicula = new(peliculas,
-                            dataTextField: nameof(Pelicula.Nombre),
-                            dataValueField: nameof(Pelicula.IdPelicula));
+        listaPelicula = idPelicula is null ?
+            new SelectList(peliculas,
+                dataTextField: nameof(Pelicula.Nombre),
+                dataValueField: nameof(Pelicula.IdPelicula)) :
+            new SelectList(peliculas,
+                dataTextField: nameof(Pelicula.Nombre),
+                dataValueField: nameof(Pelicula.IdPelicula),
+                selectedValue: idPelicula)
+                ;        
     }
 
     public void Elegircosas(IEnumerable<Pelicula> peliculas)
