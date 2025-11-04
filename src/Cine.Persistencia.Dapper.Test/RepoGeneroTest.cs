@@ -47,6 +47,6 @@ public class RepoGeneroTest : TestBase
             Nombre = "Comedia"
         };
 
-        repo.Modificar(generoModificar);   
+        repo.ModificarAsync(generoModificar);   
     }
 }

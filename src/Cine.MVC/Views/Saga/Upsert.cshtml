@@ -12,25 +12,25 @@
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="saga.NombreSaga" class="col-form-label">Titulo Saga</label>
+            <label asp-for="Saga.NombreSaga" class="col-form-label">Titulo Saga</label>
         </div>
         <div class="col-auto">
-            <input asp-for="saga.NombreSaga" class="form-control" />
+            <input asp-for="Saga.NombreSaga" class="form-control" />
         </div>
     </div>
 
         <div class="row g-2 align-items-center"></div>
         <div class="col-auto">
-            <label asp-for="saga.NSaga" class="col-form-label">Numero Saga</label>
+            <label asp-for="Saga.NSaga" class="col-form-label">Numero Saga</label>
         </div>
         <div class="col-auto">
-            <input asp-for="saga.NSaga" class="form-control" />
+            <input asp-for="Saga.NSaga" class="form-control" />
         </div>
     </div>
 
         <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <select asp-items="Model.listaPelicula" asp-for="saga.IdPelicula" class="form-select">
+            <select asp-items="Model.listaPelicula" asp-for="IdPelicula" class="form-select">
                 @if (Model.IdPelicula == 0)
                 {
                     <option selected="selected" value="" disabled>Seleccione una pelicula</option>

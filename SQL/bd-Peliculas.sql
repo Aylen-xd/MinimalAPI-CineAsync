@@ -43,6 +43,16 @@ CREATE TABLE Pelicula (
     REFERENCES Produccion (idProduccion)
 );
 
+
+CREATE TABLE Saga (
+  idSaga TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  Numero_Saga TINYINT UNSIGNED,
+  idPelicula TINYINT UNSIGNED,
+  Nombre VARCHAR(50) NOT NULL,
+  CONSTRAINT FK_Saga_Pelicula FOREIGN KEY (idPelicula)
+    REFERENCES Pelicula (idPelicula)
+);
+
 CREATE TABLE Actor (
   idActor TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   Nombre VARCHAR(40) NOT NULL,
@@ -61,15 +71,6 @@ CREATE TABLE Actor_Pelicula (
   CONSTRAINT FK_Actor_Pelicula_Actor FOREIGN KEY (idActor)
     REFERENCES Actor (idActor),
   CONSTRAINT FK_Actor_Pelicula_Pelicula FOREIGN KEY (idPelicula)
-    REFERENCES Pelicula (idPelicula)
-);
-
-CREATE TABLE Saga (
-  idSaga TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  Numero_Saga TINYINT UNSIGNED,
-  idPelicula TINYINT UNSIGNED,
-  Nombre VARCHAR(50) NOT NULL,
-  CONSTRAINT FK_Saga_Pelicula FOREIGN KEY (idPelicula)
     REFERENCES Pelicula (idPelicula)
 );
 

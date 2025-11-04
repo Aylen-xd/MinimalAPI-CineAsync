@@ -31,7 +31,7 @@ public class RepoProduccionTest : TestBase
         {
             IdEstudio = idestudio,
             Productor = productor,
-            Director = director,
+            Director_General = director,
             Guion = guion,
             Vestuario = vestuario,
             Sonido = sonido,
@@ -57,7 +57,7 @@ public class RepoProduccionTest : TestBase
         {
             IdEstudio = idestudio,
             Productor = productor,
-            Director = director,
+            Director_General = director,
             Guion = guion,
             Vestuario = vestuario,
             Sonido = sonido,
@@ -84,7 +84,7 @@ public class RepoProduccionTest : TestBase
         {
             IdEstudio = idestudio,
             Productor = productor,
-            Director = director,
+            Director_General = director,
             Guion = guion,
             Vestuario = vestuario,
             Sonido = sonido,

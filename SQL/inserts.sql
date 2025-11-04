@@ -123,3 +123,5 @@ SELECT 'Ingresando ActoresPel'
 ;
 
 commit;
+
+SELECT * FROM Pelicula;

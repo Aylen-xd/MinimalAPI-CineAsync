@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
 using Cine.MVC.VModels;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Cine.Core.Controllers;
 
@@ -36,7 +35,7 @@ public class SagaController : Controller
 
         var peliculas = await _repoPeli.TraerElementoAsync();
 
-        VMSaga vmSaga = new VMSaga(peliculas);
+        VMSaga vmSaga = new VMSaga(peliculas); 
 
         vmSaga.IdSaga = saga.IdSaga;
         vmSaga.IdPelicula = saga.IdPelicula;
@@ -49,16 +48,18 @@ public class SagaController : Controller
     [HttpPost]
     public async Task<IActionResult> Upsert (VMSaga vmsaga)
     {
+        vmsaga.Saga.IdPelicula = vmsaga.IdPelicula;
+        
         if (vmsaga.IdSaga == 0)
         {
-            _repoSaga.Alta(vmsaga.saga);
+            _repoSaga.Alta(vmsaga.Saga);
             return RedirectToAction(nameof(Listado));
         }
 
         else
         {
-            vmsaga.saga.IdSaga = vmsaga.IdSaga;
-            await _repoSaga.ModificarAsync(vmsaga.saga);
+            vmsaga.Saga.IdSaga = vmsaga.IdSaga;
+            await _repoSaga.ModificarAsync(vmsaga.Saga);
             return RedirectToAction(nameof(Listado));
         }
     }

@@ -6,13 +6,13 @@ public class RepoSaga : RepoBase, IRepoSaga
 {
     public RepoSaga(IDbConnection conexion) : base(conexion)
     {
-    }
+    } 
     static readonly string UpdSaga =
         @"UPDATE Saga
         SET Numero_Saga = @unNumero_Saga,
             idPelicula = @unidPelicula,
             Nombre = @unnombre
-        WHERE idSaga = @unidsaga";
+        WHERE IdSaga = @unidsaga";
     public static DynamicParameters SagaParametros(Saga saga)
     {
         var parametros = new DynamicParameters();
@@ -51,6 +51,7 @@ public class RepoSaga : RepoBase, IRepoSaga
     public void Alta(Saga saga)
     {
         DynamicParameters parametros = SagaParametros(saga);
+        
         Conexion.Execute("InsSaga", parametros);
         saga.IdSaga = parametros.Get<byte>("unidsaga");
     }

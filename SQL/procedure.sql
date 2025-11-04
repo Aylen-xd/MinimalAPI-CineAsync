@@ -212,10 +212,10 @@ end $$
 
 DELIMITER $$
 /*procedure de saga */
- drop procedure if exists insSaga $$
+ drop procedure if exists insSaga $$ 
  Create procedure insSaga(out   unidsaga TINYINT UNSIGNED,
                                 unNumero_Saga TINYINT UNSIGNED,
-                                unidpelicula MEDIUMINT unsigned,
+                                unidpelicula TINYINT unsigned,
                                 unnombre varchar (50) )
 begin
  insert into Saga(Numero_Saga,idpelicula,nombre)
@@ -234,7 +234,7 @@ DELIMITER $$
 drop PROCEDURE if EXISTS UpdSaga $$
 CREATE PROCEDURE UpdSaga(out unidsaga TINYINT UNSIGNED,
                             unNumero_Saga TINYINT UNSIGNED,
-                            unidpelicula MEDIUMINT unsigned,
+                            unidpelicula TINYINT unsigned,
                             unnombre varchar(50))
 begin 
         update Saga

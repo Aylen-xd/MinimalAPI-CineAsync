@@ -9,14 +9,15 @@ public class VMSaga
 
     public byte IdSaga { get; set; }
     public byte IdPelicula { get; set; }
-    public string Nombre { get; set; }
+    public string? Nombre { get; set; }
     public byte NSaga { get; set; }
 
-    //public Saga Saga { get; set; } = new Saga();
-
-    public Saga saga =>
-    new Saga(IdSaga, IdPelicula, NSaga, Nombre);
-
+    public Saga Saga { get; set; } = new Saga();
+    
+/*
+        public Saga Saga =>
+        new Saga(IdSaga, IdPelicula, NSaga, Nombre);
+    */
     public VMSaga(IEnumerable<Pelicula> peliculas)
     {
         listaPelicula = new(peliculas,
