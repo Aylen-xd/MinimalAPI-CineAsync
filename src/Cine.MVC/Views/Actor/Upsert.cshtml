@@ -1,15 +1,15 @@
 @using Cine.MVC.VModels
-@model Actor
+@model Cine.MVC.VModels.VMActor;
 @using Cine.Core
 
 @{
-    var texto = Model is null ? "Alta Actor" : "Modificar Actor";
+    var texto = Model.IdActor == 0? "Alta Actor" : "Modificar Actor";
     ViewData["Title"] = texto;
 }
 
 <form asp-controller="Actor" asp-action="Upsert" method="post">
     <div asp-validation-summary="All"></div>
-    <div><input type="hidden" asp-for="@Model.idActor" /></div>
+    <div><input type="hidden" asp-for="@Model.IdActor" /></div>
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
@@ -31,19 +31,19 @@
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="FNacimiento" class="col-form-label">Fecha Nacimiento</label>
+            <label asp-for="Actor.FNacimiento" class="col-form-label">Fecha Nacimiento</label>
         </div>
         <div class="col-auto">
-            <input asp-for="FNacimiento" class="form-control" />
+            <input asp-for="Actor.FNacimiento" class="form-control" />
         </div>
     </div>
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="Sexo" class="col-form-label">Sexo</label>
+            <label asp-for="Actor.Sexo" class="col-form-label">Sexo</label>
         </div>
         <div class="col-auto">
-            <input asp-for="Sexo" class="form-control" />
+            <input asp-for="Actor.Sexo" class="form-control" />
         </div>
     </div>
 
@@ -65,8 +65,18 @@
         </div>
     </div>
 
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-items="Model.listaPelicula" asp-for="IdPelicula" class="form-select">
+                @if (Model.IdPelicula == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione una pelicula</option>
+                }
+            </select>
+        </div>
+
     <div class="col-auto">
-            @if (Model is null)
+            @if (Model.IdActor == 0)
             {
                 <button type="submit" class="btn btn-primary">@texto</button>
             }

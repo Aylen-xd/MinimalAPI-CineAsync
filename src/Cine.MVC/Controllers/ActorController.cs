@@ -1,6 +1,5 @@
 using Cine.Core.Persistencia;
 using Microsoft.AspNetCore.Mvc;
-using Cine.Core.Persistencia;
 using Cine.MVC.VModels;
 using Cine.Core;
 
@@ -9,14 +8,20 @@ namespace Cine.MVC.Controllers;
 public class ActorController : Controller
 {
     IRepoActor _repoActor;
+    IRepoPelicula _repoPeli;
 
-    public ActorController(IRepoActor repoActor)
-    => _repoActor = repoActor;
+    public ActorController(IRepoActor repoActor,IRepoPelicula repoPeli)
+    => (_repoActor, _repoPeli) = (repoActor, repoPeli);
 
     public IActionResult Listado() => View(_repoActor.TraerElementos());
 
     [HttpGet]
-    public async Task<IActionResult> Alta() => View("Upsert");
+    public async Task<IActionResult> Alta()
+    {
+        var pelis = await _repoPeli.TraerElementoAsync();
+        VMActor vm = new VMActor(pelis);
+        return View("Upsert", vm);
+    }
 
     [HttpGet]
     public async Task<IActionResult> Modificar(byte? id)
@@ -39,13 +44,13 @@ public class ActorController : Controller
         if (actor.idActor == 0)
         {
             _repoActor.Alta(actor);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Listado));
 
         }
         else
         {
             await _repoActor.ModificarAsync(actor);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Listado));
         }
     }
 }
