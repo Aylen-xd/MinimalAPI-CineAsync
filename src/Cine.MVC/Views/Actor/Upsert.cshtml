@@ -1,0 +1,79 @@
+@using Cine.MVC.VModels
+@model Actor
+@using Cine.Core
+
+@{
+    var texto = Model is null ? "Alta Actor" : "Modificar Actor";
+    ViewData["Title"] = texto;
+}
+
+<form asp-controller="Actor" asp-action="Upsert" method="post">
+    <div asp-validation-summary="All"></div>
+    <div><input type="hidden" asp-for="@Model.idActor" /></div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Nombre" class="col-form-label">Nombre Actor</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Apellido" class="col-form-label">Apellido</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Apellido" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="FNacimiento" class="col-form-label">Fecha Nacimiento</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="FNacimiento" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Sexo" class="col-form-label">Sexo</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Sexo" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Nacionalidad" class="col-form-label">Nacionalidad</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Nacionalidad" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Rol" class="col-form-label">Rol</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Rol" class="form-control" />
+        </div>
+    </div>
+
+    <div class="col-auto">
+            @if (Model is null)
+            {
+                <button type="submit" class="btn btn-primary">@texto</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">@texto</button>
+            }
+        </div>
+    </div>
+</form>

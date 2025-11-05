@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Cine.MVC.VModels;
 
 public class VMTrailer
-{
+{ 
     public SelectList listaGeneros;
     public SelectList listaPelicula;
     public byte IdTrailer { get; set; }

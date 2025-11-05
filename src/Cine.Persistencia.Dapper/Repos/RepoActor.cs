@@ -90,4 +90,18 @@ public class RepoActor : RepoBase, IRepoActor
         //IRepoDetalle<Genero, byte>
     }
 
+    public Task ModificarAsync(Actor elemento)
+    {
+        var parametros = new
+        {
+            xidActor = elemento.idActor,
+            xNombre = elemento.Nombre,
+            xApellido = elemento.Apellido,
+            xfecha_nacimiento = elemento.FNacimiento,
+            xsexo = elemento.Sexo,
+            xnacionalidad = elemento.Nacionalidad,
+            xrol = elemento.Rol
+        };
+        return Conexion.ExecuteAsync("UpdActor", parametros);
+    }
 }

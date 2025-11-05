@@ -166,8 +166,57 @@ CALL InsActor (@idActorSantino, 'Santino ', 'Fontana', '1982-03-21', 'M', 'Estad
  CALL InsActor(@idActorChalamet,'Timothée', 'Chalamet', '1995-12-27', 'M', 'Estadounidense', 'Actor Live Action') $$
  CALL InsActor(@idActorStewart, 'Josh', 'Stewart', '1977-02-06', 'M', 'Estadounidense', 'Actor de voz') $$
 
-DELIMITER $$
 
+DELIMITER $$
+DROP PROCEDURE if EXISTS UpdActor $$
+CREATE PROCEDURE UpdActor (in xidActor tinyint unsigned,
+                            in xNombre varchar(40),
+                            in xApellido varchar(40),
+                            in xfecha_nacimiento DATE,
+                            in xsexo char(1),
+                            in xnacionalidad varchar(40),
+                            in xrol varchar (40)):
+BEGIN
+    UPDATE Actor
+    SET Nombre = xNombre,
+        Apellido = xApellido,
+        fecha_nacimiento = xfecha_nacimiento,
+        sexo = xsexo,
+        nacionalidad = xnacionalidad,
+        rol = xrol
+    WHERE idActor = xidActor;
+END $$
+
+CALL UpdActor (@idActorKristen,   'Kristen ', 'Bell', '1980-07-18', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor (@idActorIdina, 'Idina ', 'Menzel', '1971-05-30', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor (@idActorJonathan, 'Jonathan ', 'Groff', '1995-03-26', 'M', 'Estadounidense', 'Actor de voz') $$
+CALL UpdActor (@idActorJosh, 'Josh ', 'Gad', '1981-02-23', 'M', 'Estadounidense', 'Actor de voz') $$
+CALL UpdActor (@idActorAlan, 'Alan ', 'Tudyk', '1971-03-16', 'M', 'Estadounidense', 'Actor de voz') $$
+CALL UpdActor (@idActorEva, 'Eva ', 'Bella', '2002-06-04', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor (@idActorLivy, 'Livy ', 'Stubenraunch', '2005-04-18', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor (@idActorSantino, 'Santino ', 'Fontana', '1982-03-21', 'M', 'Estadounidense', 'Actor de voz') $$
+-- Fronzen 2
+CALL UpdActor(@idActorSterling, 'Sterling ', 'Brown', '1976-04-05', 'M', 'Estadounidense', 'Actor de voz') $$
+CALL UpdActor(@idActorEvan, 'Evan ', 'Wood', '1987-09-07', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor(@idActorMartha, 'Martha ', 'Plimpton', '1970-11-16', 'F', 'Estadounidense', 'Actriz de voz') $$
+CALL UpdActor(@idActorRachel, 'Rachel ', 'Matthews', '1993-10-25', 'F', 'Estadounidense', 'Actriz de voz') $$
+-- Interestelar
+CALL UpdActor(@idActorMatthew, 'Matthew ', 'McConaughey', '1969-11-04', 'M', 'Estadounidense', 'Actor Live action') $$
+CALL UpdActor(@idActorAnne, 'Anne ', 'Hathaway', '1982-11-12', 'F', 'Estadounidense', 'Actriz Live action') $$
+CALL UpdActor(@idActorFoy, 'Mackenzie ', 'Foy', '2000-11-10', 'F', 'Estadounidense', 'Actriz Live action') $$
+CALL UpdActor(@idActorJessica, 'Jessica ', 'Chastain', '1977-03-24', 'F', 'Estadounidense', 'Actriz Live action') $$
+CALL UpdActor(@idActorMichael, 'Michael ', 'Caine', '1933-03-14', 'M', 'Británico', 'Actor Live Action') $$
+CALL UpdActor(@idActorCasey, 'Casey', 'Affleck', '1975-08-12', 'M', 'Estadounidense', 'Actor Live Action') $$
+CALL UpdActor(@idActorMatt, 'Matt', 'Damon', '1970-10-08', 'M', 'Estadounidense', 'Actor Live Action') $$
+CALL UpdActor(@idActorLithgow, 'John', 'Lithgow', '1945-10-19', 'M', 'Estadounidense', 'Actor Live Action') $$
+CALL UpdActor(@idActorEllen, 'Ellen', 'Burstyn', '1932-12-07', 'F', 'Estadounidense', 'Actriz Live action') $$
+CALL UpdActor(@idActorDavid, 'David', 'Gyasi', '1980-01-02', 'M', 'Británica', 'Actor Live Action') $$
+CALL UpdActor(@idActorTopher, 'Topher', 'Grace', '1978-07-12', 'M', 'Estadounidense', 'Actor Live Action') $$
+CALL UpdActor(@idActorChalamet,'Timothée', 'Chalamet', '1995-12-27', 'M', 'Estadounidense', 'Actor Live Action') $$
+CALL UpdActor(@idActorStewart, 'Josh', 'Stewart', '1977-02-06', 'M', 'Estadounidense', 'Actor de voz') $$
+
+
+DELIMITER $$
 Drop Procedure if EXISTS `InsPelicula` $$
 Create Procedure InsPelicula ( out unidPelicula TINYINT UNSIGNED,
                                 unidProduccion tinyint unsigned,
