@@ -53,7 +53,15 @@ public class ActorController : Controller
     [HttpPost]
     public async Task<IActionResult> Upsert(VMActor vmactor)
     {
-        vmactor.Actor.idActor = (byte)vmactor.IdActor;
+
+        vmactor.Actor.Nombre = vmactor.Nombre;
+        vmactor.Actor.Apellido = vmactor.Apellido;
+        vmactor.Actor.FNacimiento = vmactor.Fecha_Nacimiento; 
+        vmactor.Actor.Sexo = vmactor.Sexo;
+        vmactor.Actor.Nacionalidad = vmactor.Nacionalidad;
+        vmactor.Actor.Rol = vmactor.Rol;
+
+        vmactor.Actor.idActor = vmactor.IdActor;
         //Preguntar si id es 0 o no ...
         if (vmactor.IdActor == 0)
         {
@@ -63,7 +71,7 @@ public class ActorController : Controller
         }
         else
         {
-            vmactor.Actor.idActor = (byte)vmactor.IdActor;
+            vmactor.Actor.idActor = vmactor.IdActor;
             await _repoActor.ModificarAsync(vmactor.Actor);
             return RedirectToAction(nameof(Listado));
         }

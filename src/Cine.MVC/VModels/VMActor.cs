@@ -8,11 +8,11 @@ public class VMActor
     //public SelectList listaProducciones;
     public SelectList listaPelicula;
     public byte IdPelicula { get; set; }
-    public int IdActor { get; set; }
+    public byte IdActor { get; set; }
     public string? Nombre { get; set; }
     public string? Apellido { get; set; }
     public DateTime Fecha_Nacimiento { get; set; }
-    public byte Sexo { get; set; }
+    public char Sexo { get; set; }
     public string? Nacionalidad { get; set; }
     public string? Rol { get; set; }
 

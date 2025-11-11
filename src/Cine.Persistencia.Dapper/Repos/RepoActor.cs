@@ -8,6 +8,16 @@ public class RepoActor : RepoBase, IRepoActor
 {
     public RepoActor(IDbConnection conexion) : base(conexion) { }
 
+        static readonly string UpdActor =
+        @"UPDATE Actor
+        SET Nombre = @xNombre,
+            Apellido = @xApellido,
+            fecha_nacimiento = @xfecha_nacimiento,
+            sexo = @xsexo,
+            nacionalidad = @xnacionalidad,
+            rol = @xrol
+        WHERE idActor = @xidActor";
+
     private static DynamicParameters ConfigurarParamestrosAltaActor(Actor elemento)
     {
         var parametros = new DynamicParameters();

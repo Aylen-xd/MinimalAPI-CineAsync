@@ -3,7 +3,7 @@
 @using Cine.Core
 
 @{
-    var texto = Model.IdActor == 0? "Alta Actor" : "Modificar Actor";
+    var texto = Model.IdActor == 0 ? "Alta Actor" : "Modificar Actor";
     ViewData["Title"] = texto;
 }
 
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-        <div class="row g-2 align-items-center">
+    <div class="row g-2 align-items-center">
         <div class="col-auto">
             <label asp-for="Apellido" class="col-form-label">Apellido</label>
         </div>
@@ -31,19 +31,19 @@
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="Actor.FNacimiento" class="col-form-label">Fecha Nacimiento</label>
+            <label asp-for="Fecha_Nacimiento" class="col-form-label">Fecha Nacimiento</label>
         </div>
         <div class="col-auto">
-            <input asp-for="Actor.FNacimiento" class="form-control" />
+            <input asp-for="Fecha_Nacimiento" class="form-control" />
         </div>
     </div>
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <label asp-for="Actor.Sexo" class="col-form-label">Sexo</label>
+            <label asp-for="Sexo" class="col-form-label">Sexo</label>
         </div>
         <div class="col-auto">
-            <input asp-for="Actor.Sexo" class="form-control" />
+            <input asp-for="Sexo" class="form-control" />
         </div>
     </div>
 
@@ -75,7 +75,7 @@
             </select>
         </div>
 
-    <div class="col-auto">
+        <div class="col-auto">
             @if (Model.IdActor == 0)
             {
                 <button type="submit" class="btn btn-primary">@texto</button>
