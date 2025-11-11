@@ -54,7 +54,7 @@ public class SagaController : Controller
         if (vmsaga.IdSaga == 0)
         {
             _repoSaga.Alta(vmsaga.Saga);
-            return RedirectToAction(nameof(Listado));
+            return RedirectToAction(nameof(Listado));  
         }
 
         else

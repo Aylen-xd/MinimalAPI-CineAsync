@@ -34,22 +34,37 @@ public class ActorController : Controller
         if (actor is null)
             return NotFound();
 
+            var actorPelis = await _repoPeli.TraerElementoAsync();
+
+            VMActor vmActor = new VMActor(actorPelis);
+
+            vmActor.Actor = actor;
+            vmActor.IdActor = actor.idActor;
+            vmActor.Nombre = actor.Nombre;
+            vmActor.Apellido = actor.Apellido;
+            vmActor.Fecha_Nacimiento = actor.FNacimiento;
+            vmActor.Sexo = actor.Sexo;
+            vmActor.Nacionalidad = actor.Nacionalidad;
+            vmActor.Rol = actor.Rol;
+
         return View("Upsert", actor);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Upsert(Actor actor)
+    public async Task<IActionResult> Upsert(VMActor vmactor)
     {
+        vmactor.Actor.idActor = (byte)vmactor.IdActor;
         //Preguntar si id es 0 o no ...
-        if (actor.idActor == 0)
+        if (vmactor.IdActor == 0)
         {
-            _repoActor.Alta(actor);
+            _repoActor.Alta(vmactor.Actor);
             return RedirectToAction(nameof(Listado));
 
         }
         else
         {
-            await _repoActor.ModificarAsync(actor);
+            vmactor.Actor.idActor = (byte)vmactor.IdActor;
+            await _repoActor.ModificarAsync(vmactor.Actor);
             return RedirectToAction(nameof(Listado));
         }
     }
