@@ -7,6 +7,7 @@ public class VMActor
 {
     //public SelectList listaProducciones;
     public SelectList listaPelicula;
+    public SelectList listaSexo;
     public byte IdPelicula { get; set; }
     public byte IdActor { get; set; }
     public string? Nombre { get; set; }
@@ -28,7 +29,8 @@ public class VMActor
                 dataTextField: nameof(Pelicula.Nombre),
                 dataValueField: nameof(Pelicula.IdPelicula),
                 selectedValue: idPelicula)
-                ;     
+                ;
+        
     }
 
     public void Elegircosas(IEnumerable<Pelicula> peliculas)
@@ -37,6 +39,7 @@ public class VMActor
         dataTextField: nameof(Pelicula.Nombre),
         dataValueField: nameof(Pelicula.IdPelicula));
     }
+
     /*
                 public Actor Actor =>
                     new Actor(IdActor, Nombre, Apellido);

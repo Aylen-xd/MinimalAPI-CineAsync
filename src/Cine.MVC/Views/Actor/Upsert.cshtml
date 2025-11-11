@@ -75,6 +75,16 @@
             </select>
         </div>
 
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-items="Model.Sexo" asp-for="IdActor" class="form-select">
+                @if (Model.IdActor == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione un genero</option>
+                }
+            </select>
+        </div>
+
         <div class="col-auto">
             @if (Model.IdActor == 0)
             {

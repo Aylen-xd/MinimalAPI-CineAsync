@@ -28,7 +28,7 @@ public class VMSaga
                 dataTextField: nameof(Pelicula.Nombre),
                 dataValueField: nameof(Pelicula.IdPelicula),
                 selectedValue: idPelicula)
-                ;        
+                ;   
     }
 
     public void Elegircosas(IEnumerable<Pelicula> peliculas)

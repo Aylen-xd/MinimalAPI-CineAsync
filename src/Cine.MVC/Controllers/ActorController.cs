@@ -38,15 +38,6 @@ public class ActorController : Controller
 
             VMActor vmActor = new VMActor(actorPelis);
 
-            vmActor.Actor = actor;
-            vmActor.IdActor = actor.idActor;
-            vmActor.Nombre = actor.Nombre;
-            vmActor.Apellido = actor.Apellido;
-            vmActor.Fecha_Nacimiento = actor.FNacimiento;
-            vmActor.Sexo = actor.Sexo;
-            vmActor.Nacionalidad = actor.Nacionalidad;
-            vmActor.Rol = actor.Rol;
-
         return View("Upsert", actor);
     }
 
