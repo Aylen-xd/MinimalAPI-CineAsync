@@ -38,6 +38,7 @@
         </div>
     </div>
 
+<!-- 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
             <label asp-for="Sexo" class="col-form-label">Sexo</label>
@@ -46,6 +47,7 @@
             <input asp-for="Sexo" class="form-control" />
         </div>
     </div>
+    -->
 
     <div class="row g-2 align-items-center">
         <div class="col-auto">
@@ -77,10 +79,10 @@
 
         <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <select asp-items="Model.Sexo" asp-for="IdActor" class="form-select">
+            <select asp-items="Model.listaSexo" asp-for="IdActor" class="form-select">
                 @if (Model.IdActor == 0)
                 {
-                    <option selected="selected" value="" disabled>Seleccione un genero</option>
+                    <option selected="selected" value="" disabled>Seleccione un genero/sexo</option>
                 }
             </select>
         </div>

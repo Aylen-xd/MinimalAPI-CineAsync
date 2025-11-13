@@ -19,7 +19,7 @@ public class VMActor
 
     public Actor Actor { get; set; } = new Actor();
 
-    public VMActor(IEnumerable<Pelicula> peliculas , byte? idPelicula = null)
+    public VMActor(IEnumerable<Pelicula> peliculas, byte? idPelicula = null, char? sexo = null)
     {
         listaPelicula = idPelicula is null ?
             new SelectList(peliculas,
@@ -30,7 +30,12 @@ public class VMActor
                 dataValueField: nameof(Pelicula.IdPelicula),
                 selectedValue: idPelicula)
                 ;
-        
+        listaSexo = new SelectList(new[]
+        {
+            new { Value = 'M', Text = "Masculino" },
+            new { Value = 'F', Text = "Femenino" },
+            new { Value = 'O', Text = "Otro" }
+    });
     }
 
     public void Elegircosas(IEnumerable<Pelicula> peliculas)
