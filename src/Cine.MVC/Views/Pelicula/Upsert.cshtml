@@ -1,0 +1,100 @@
+@using Cine.MVC.VModels
+@model Cine.MVC.VModels.VMPeliculas;
+@using Cine.Core
+
+@{
+    var texto = Model is null ? "Alta Pelucla" : "Modificar Pelicula";
+    ViewData["Title"] = texto;
+}
+
+
+<form asp-controller="Pelicula" asp-action="Upsert" method="post">
+    <div asp-validation-summary="All"></div>
+    <div><input type="hidden" asp-for="@Model.IdPelicula" /></div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Nombre" class="col-form-label">Nombre Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Nombre" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Estreno" class="col-form-label">Estreno Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Estreno" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Descripcion" class="col-form-label">Descripcion Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Descripcion" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Calificacion" class="col-form-label">Calificacion Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Calificacion" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Duracion" class="col-form-label">Duracion Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Duracion" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Restriccion" class="col-form-label">Restriccion Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Restriccion" class="form-control" />
+        </div>
+    </div>
+
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label asp-for="Recaudado" class="col-form-label">Recaudado Pelicula</label>
+        </div>
+        <div class="col-auto">
+            <input asp-for="Recaudado" class="form-control" />
+        </div>
+    </div>
+
+    <!-- Lista preoduccion--->
+        <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <select asp-items="Model.ProduccionesList" asp-for="Pelicula.IdProduccion" class="form-select">
+                @if (Model.IdProduccion == 0)
+                {
+                    <option selected="selected" value="" disabled>Seleccione una produccion</option>
+                }
+            </select>
+        </div>
+
+    <div class="col-auto">
+            @if (Model is null)
+            {
+                <button type="submit" class="btn btn-primary">@texto</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">@texto</button>
+            }
+        </div>
+    </div>
+</form>

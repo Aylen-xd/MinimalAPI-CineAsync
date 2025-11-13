@@ -17,7 +17,10 @@ public class VMActor
     public string? Nacionalidad { get; set; }
     public string? Rol { get; set; }
 
-    public Actor Actor { get; set; } = new Actor();
+    //public Actor Actor { get; set; } = new Actor();
+
+    public Actor Actor =>
+        new Actor(IdActor, Nombre, Apellido, Fecha_Nacimiento, Sexo, Nacionalidad, Rol);
 
     public VMActor(IEnumerable<Pelicula> peliculas, byte? idPelicula = null, char? sexo = null)
     {
@@ -44,10 +47,5 @@ public class VMActor
         dataTextField: nameof(Pelicula.Nombre),
         dataValueField: nameof(Pelicula.IdPelicula));
     }
-
-    /*
-                public Actor Actor =>
-                    new Actor(IdActor, Nombre, Apellido);
-            */
     public VMActor() { }
 }

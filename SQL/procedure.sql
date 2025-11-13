@@ -240,6 +240,32 @@ call InsPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada',
  -- Películas comunes
  call InsPelicula(@idPeliInterestelar, @idProduInterestelar, 'Interestelar', '2014-11-06', 'Un equipo de exploradores viaja más allá de esta galaxia a través de un reciente descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas', 9.0, '02:49:00', 13, 708000000) $$
 
+DELIMITER $$
+drop procedure if exist UpdPelicula $$
+create procedure UpdPelicula ( in unidPelicula TINYINT UNSIGNED,
+                                unidProduccion tinyint unsigned,
+                                unnombre varchar(40),
+                                unestreno date,
+                                unadescripcion varchar (300),
+                                unacalificacion tinyint unsigned,
+                                unaduracion Time,
+                                unarestrincion tinyint unsigned ,
+                                unrecaudado bigint unsigned)
+begin 
+	Update Pelicula
+
+	SET Pelicula = unnombre
+	WHERE idPelicula = unidPelicula;
+
+call InsPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada', '2013-11-27', 'Anna y Kristoff desafían la naturaleza en una carrera para salvar a Elsa y al reino', 7.9, '01:42:00', 0, 1284219009) $$
+
+call InsPelicula(@idPeliFrozen2, @idProduFrozen2, 'Frozen 2', '2019-01-02', 'Elsa se aventura en lo desconocido para descubrir verdades del pasado', 8.0, '01:48:00', 0, 1453683476) $$
+
+-- Películas comunes
+call InsPelicula(@idPeliInterestelar, @idProduInterestelar, 'Interestelar', '2014-11-06', 'Un equipo de exploradores viaja más allá de esta galaxia a través de un reciente descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas', 9.0, '02:49:00', 13, 708000000) $$
+
+
+
 -- Insert en Trailer:
 delimiter $$
 drop procedure if exists InsTrailer $$

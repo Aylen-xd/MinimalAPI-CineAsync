@@ -26,6 +26,12 @@ public class Pelicula
     public ulong Recaudado { get ; set ; }
     public IEnumerable<Trailer> Trailers { get ; set ; }
     public IEnumerable<Actor> Actores { get; set; }
-    public Produccion ?Produccion { get ; set ; }
+    public Produccion? Produccion { get; set; }
+    
+    public Pelicula()
+    {
+        
+    }
+
 }
 

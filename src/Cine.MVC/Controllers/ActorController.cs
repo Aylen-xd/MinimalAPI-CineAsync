@@ -60,7 +60,7 @@ public class ActorController : Controller
             return RedirectToAction(nameof(Listado));
 
         }
-        else
+        else 
         {
             vmactor.Actor.idActor = vmactor.IdActor;
             await _repoActor.ModificarAsync(vmactor.Actor);
