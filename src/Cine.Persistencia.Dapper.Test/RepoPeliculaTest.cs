@@ -8,7 +8,7 @@ namespace Cine.Persistencia.Dapper.Test;
 public class RepoPeliculaTest : TestBase
 {
     readonly IRepoPelicula repo;
-
+    
     public RepoPeliculaTest () : base () => repo = new RepoPelicula(Conexion);
 
     [Fact]

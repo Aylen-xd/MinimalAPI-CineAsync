@@ -6,7 +6,18 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 {
     public RepoPelicula(IDbConnection conexion) : base(conexion) { }
 
-    private static DynamicParameters GetParametrosAlta(Pelicula pelicula)
+    static readonly string updatePe =
+        @"UPDATE Pelicula
+        SET idProduccion = @idProduccion,
+            nombre = @nombre,
+            estreno = @estreno,
+            descripcion = @descripcion,
+            calificacion = @calificacion,
+            duracion = @duracion,
+            restrincion = @restrincion,
+            recaudado = @recaudado
+        WHERE idPelicula = @idPelicula";
+    private static DynamicParameters PeliculaParametros(Pelicula pelicula)
     {
         var parametros = new DynamicParameters();
         parametros.Add("unidPelicula", direction: ParameterDirection.Output);
@@ -69,16 +80,46 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 
     public void Alta(Pelicula pelicula)
     {
-            var parametros = GetParametrosAlta(pelicula);
-            Conexion.Execute("InsPelicula", parametros);
-            pelicula.IdPelicula = parametros.Get<byte>("unidPelicula");
+        DynamicParameters parametros = PeliculaParametros(pelicula);
+        Conexion.Execute("InsPelicula", parametros);
+        pelicula.IdPelicula = parametros.Get<byte>("unidPelicula");
     }
 
+    public Pelicula? Detalle(byte id)
+    {
+        var query = @"SELECT * FROM Pelicula WHERE idPelicula = @idPelicula";
+        var peliculaID = Conexion.QuerySingleOrDefault<Pelicula>(query, new { idPelicula = id });
+        return peliculaID;
+    }
+
+    public static DynamicParameters PeliculaParametros(Pelicula pelicula)
+    {
+        var parametros = new DynamicParameters();
+        parametros.Add("unidPelicula", pelicula.IdPelicula);
+        parametros.Add("unidProduccion", pelicula.IdProduccion);
+        parametros.Add("unnombre", pelicula.Nombre);
+        parametros.Add("unestreno", pelicula.Estreno);
+        parametros.Add("unadescripcion", pelicula.Descripcion);
+        parametros.Add("unacalificacion", pelicula.Calificacion);
+        parametros.Add("unaduracion", pelicula.Duracion);
+        parametros.Add("unarestrincion", pelicula.Restriccion);
+        parametros.Add("unrecaudado", pelicula.Recaudado);
+
+        return parametros;
+    }
+
+    public void Modificar(Pelicula pelicula)
+    {
+        {
+            DynamicParameters parametros = PeliculaParametros(pelicula);
+            Conexion.Execute(updatePe, parametros);
+        }
+    }
     //--------Metodos Asyncronicos de la interfaz----------
 
     public async Task AltaAsync(Pelicula elemento)
     {
-        DynamicParameters parametros = GetParametrosAlta(elemento);
+        DynamicParameters parametros = PeliculaParametros(elemento);
         await Conexion.ExecuteAsync("InsPelicula", parametros);
         elemento.IdPelicula = parametros.Get<byte>("unidPelicula");
     }
@@ -95,5 +136,29 @@ public class RepoPelicula : RepoBase, IRepoPelicula
         var query = @"SELECT * FROM Pelicula WHERE idPelicula = @idPelicula";
         var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query, new { idActor = id });
         return peliculaID;
+    }
+
+    public Task<IEnumerable<Pelicula>> TraerElementosAsync()
+    {
+        var query = @"SELECT * FROM Pelicula";
+        var pelicula = Conexion.QueryAsync<Pelicula>(query);
+        return pelicula;
+    }
+
+    public async Task ModificarAsync(Pelicula pelicula)
+    {
+        var parametros = new
+        {
+            idPelicula = pelicula.IdPelicula,
+            idProduccion = pelicula.IdProduccion,
+            nombre = pelicula.Nombre,
+            estreno = pelicula.Estreno,
+            descripcion = pelicula.Descripcion,
+            calificacion = pelicula.Calificacion,
+            duracion = pelicula.Duracion,
+            restrincion = pelicula.Restriccion,
+            recaudado = pelicula.Recaudado
+        };
+        await Conexion.ExecuteAsync(updatePe, parametros);
     }
 }
