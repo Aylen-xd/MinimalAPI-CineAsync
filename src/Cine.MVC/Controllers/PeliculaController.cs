@@ -9,10 +9,10 @@ namespace Cine.Core.Controllers;
 public class PeliculaController : Controller
 {
     IRepoPelicula _repoPelicula;
+    IRepoProduccion _repoProduccion;
+    public PeliculaController(IRepoPelicula repoPelicula, IRepoProduccion repoProduccion) => (_repoPelicula, _repoProduccion) = (repoPelicula, repoProduccion);
 
-    public PeliculaController(IRepoPelicula repoPelicula) => _repoPelicula = repoPelicula;
-
-    public IActionResult Index() => View(_repoPelicula.TraerElementos());
+    public IActionResult Listado() => View(_repoPelicula.TraerElementos());
 
     [HttpGet]
     public async Task<IActionResult> Alta() => View("Upsert");
