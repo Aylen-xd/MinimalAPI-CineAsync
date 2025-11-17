@@ -20,7 +20,7 @@ public class VMPeliculas
     public IEnumerable<Actor> Actores { get; set; }
     public Produccion? Produccion { get; set; }
 
-        public Pelicula Pelicula =>
+    public Pelicula Pelicula =>
         new Pelicula(IdPelicula, IdProduccion, Nombre ?? string.Empty, Estreno, Descripcion ?? string.Empty, Calificacion, Duracion, Restriccion, Recaudado);
 
 
@@ -40,7 +40,7 @@ public class VMPeliculas
         dataValueField: nameof(Produccion.IdProduccion));
     }
 
-    public VMPeliculas() { }
+    public VMPeliculas(IEnumerable<Pelicula> peliculass) { }
     
 
 }

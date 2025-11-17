@@ -1,5 +1,3 @@
-
-
 namespace Cine.Persistencia.Dapper.Repos;
 
 public class RepoPelicula : RepoBase, IRepoPelicula
@@ -117,7 +115,7 @@ public class RepoPelicula : RepoBase, IRepoPelicula
     public async Task<Pelicula?> DetalleAsync(byte id)
     {
         var query = @"SELECT * FROM Pelicula WHERE idPelicula = @idPelicula";
-        var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query, new { idActor = id });
+        var peliculaID = await Conexion.QuerySingleOrDefaultAsync<Pelicula>(query, new { idPelicula = id });
         return peliculaID;
     }
 
