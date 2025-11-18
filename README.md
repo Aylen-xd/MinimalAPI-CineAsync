@@ -3,7 +3,7 @@
   <img src="https://et12.edu.ar/imgs/computacion/vamoaprogramabanner.png" alt="Banner Computación">
 </p>
 
-## Computación 2024
+## Computación 2025
 
 **Asignatura**: Programación sobre Redes
 
