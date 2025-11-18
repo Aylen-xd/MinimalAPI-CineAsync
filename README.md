@@ -7,7 +7,7 @@
 
 **Asignatura**: Base de Datos
 
-**Curso**: 5° 8°
+**Curso**: 6° 8°
 
 # Reseñas de Peliculas
 
