@@ -5,7 +5,7 @@
 
 ## Computación 2024
 
-**Asignatura**: Base de Datos
+**Asignatura**: Programacion sobre Redes
 
 **Curso**: 6° 8°
 
