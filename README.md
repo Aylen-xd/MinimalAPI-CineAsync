@@ -5,9 +5,9 @@
 
 ## Computación 2024
 
-**Asignatura**: Base de Datos
+**Asignatura**: Programación sobre Redes
 
-**Curso**: 5° 8°
+**Curso**: 6° 8°
 
 # Reseñas de Peliculas
 
