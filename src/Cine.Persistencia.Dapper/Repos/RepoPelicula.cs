@@ -42,7 +42,7 @@ public class RepoPelicula : RepoBase, IRepoPelicula
     }
 
     private static readonly string queryProduccion
-    = @"Select Pelicula.idPelicula, Pelicula.idProduccion, Pelicula.nombre, Pelicula.estreno, Pelicula.descripcion, Pelicula.calificacion, Pelicula.duracion, Pelicula.restrincion, Pelicula.recaudado
+    = @"Select DISTINCT Pelicula.idPelicula, Pelicula.idProduccion, Pelicula.nombre, Pelicula.estreno, Pelicula.descripcion, Pelicula.calificacion, Pelicula.duracion, Pelicula.restrincion, Pelicula.recaudado
         From Pelicula
         join Produccion using (idProduccion)
         ";

@@ -218,7 +218,7 @@ CALL UpdActor(@idActorStewart, 'Josh', 'Stewart', '1977-02-06', 'M', 'Estadounid
 
 DELIMITER $$
 Drop Procedure if EXISTS `InsPelicula` $$
-Create Procedure InsPelicula ( out unidPelicula TINYINT UNSIGNED,
+Create Procedure DISTINCT InsPelicula ( out unidPelicula TINYINT UNSIGNED,
                                 unidProduccion tinyint unsigned,
                                 unnombre varchar(40),
                                 unestreno date,
@@ -257,12 +257,12 @@ begin
 	SET Pelicula = unnombre
 	WHERE idPelicula = unidPelicula;
 
-call InsPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada', '2013-11-27', 'Anna y Kristoff desafían la naturaleza en una carrera para salvar a Elsa y al reino', 7.9, '01:42:00', 0, 1284219009) $$
+call UpdPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada', '2013-11-27', 'Anna y Kristoff desafían la naturaleza en una carrera para salvar a Elsa y al reino', 7.9, '01:42:00', 0, 1284219009) $$
 
-call InsPelicula(@idPeliFrozen2, @idProduFrozen2, 'Frozen 2', '2019-01-02', 'Elsa se aventura en lo desconocido para descubrir verdades del pasado', 8.0, '01:48:00', 0, 1453683476) $$
+call UpdPelicula(@idPeliFrozen2, @idProduFrozen2, 'Frozen 2', '2019-01-02', 'Elsa se aventura en lo desconocido para descubrir verdades del pasado', 8.0, '01:48:00', 0, 1453683476) $$
 
 -- Películas comunes
-call InsPelicula(@idPeliInterestelar, @idProduInterestelar, 'Interestelar', '2014-11-06', 'Un equipo de exploradores viaja más allá de esta galaxia a través de un reciente descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas', 9.0, '02:49:00', 13, 708000000) $$
+call UpdPelicula(@idPeliInterestelar, @idProduInterestelar, 'Interestelar', '2014-11-06', 'Un equipo de exploradores viaja más allá de esta galaxia a través de un reciente descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas', 9.0, '02:49:00', 13, 708000000) $$
 
 
 
