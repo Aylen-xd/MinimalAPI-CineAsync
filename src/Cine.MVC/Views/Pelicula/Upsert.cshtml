@@ -1,9 +1,9 @@
 @using Cine.MVC.VModels
-@model Cine.MVC.VModels.VMPeliculas;
 @using Cine.Core
+@model Cine.MVC.VModels.VMPeliculas
 
 @{
-    var texto = Model is null ? "Alta Pelicula" : "Modificar Pelicula";
+    var texto = Model.IdPelicula == 0 ? "Alta Pelicula" : "Modificar Pelicula";
     ViewData["Title"] = texto;
 }
 
@@ -78,7 +78,7 @@
     <!-- Lista preoduccion--->
         <div class="row g-2 align-items-center">
         <div class="col-auto">
-            <select asp-items="Model.ProduccionesList" asp-for="Pelicula.IdProduccion" class="form-select">
+            <select asp-items="Model.ProduccionesList" asp-for="IdProduccion" class="form-select">
                 @if (Model.IdProduccion == 0)
                 {
                     <option selected="selected" value="" disabled>Seleccione una produccion</option>

@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Cine.Core.Persistencia;
-using Cine.Core;
-using System.Threading.Tasks;
 using Cine.MVC.VModels;
 
-
 namespace Cine.Core.Controllers;
-
 public class PeliculaController : Controller
 {
     IRepoPelicula _repoPelicula;
@@ -15,8 +11,18 @@ public class PeliculaController : Controller
 
     public IActionResult Listado() => View(_repoPelicula.TraerElementos());
 
+    /*[HttpGet]
+    public IActionResult Alta() => View("Upsert");*/
+
     [HttpGet]
-    public async Task<IActionResult> Alta() => View("Upsert");
+    public async Task<IActionResult> Alta()
+    {
+        var pelicula = new Pelicula();
+        var producciones = await _repoProduccion.TraerElementosAsync();
+        VMPeliculas vm = new VMPeliculas(pelicula, producciones);
+        //VMTrailer vm = new VMTrailer(generos, pelis);
+        return View("Upsert", vm);
+    }
 
     [HttpGet]
     public async Task<IActionResult> Modificar(byte? id)
@@ -29,11 +35,11 @@ public class PeliculaController : Controller
         if (pelicula is null)
             return NotFound();
 
-        var peliculass = await _repoPelicula.TraerElementoAsync();
+        var producciones = await _repoProduccion.TraerElementosAsync();
 
-        VMPeliculas vmPelicula = new VMPeliculas(peliculass);
+        VMPeliculas vmPelicula = new VMPeliculas(pelicula, producciones);
 
-        return View("Upsert", pelicula);
+        return View("Upsert", vmPelicula);
     }
 
     [HttpPost]
@@ -44,7 +50,7 @@ public class PeliculaController : Controller
         //vmPelicula.Trailers = vmPelicula.Trailers;
         //vmPelicula.Actores = vmPelicula.Actores;
         //vmPelicula.Produccion = vmPelicula.Produccion;
-        vmPelicula.Pelicula.IdProduccion = vmPelicula.IdProduccion;
+        // -- vmPelicula.Pelicula.IdProduccion = vmPelicula.IdProduccion;
         vmPelicula.Pelicula.Nombre = vmPelicula.Nombre;
         vmPelicula.Pelicula.Estreno = vmPelicula.Estreno;
         vmPelicula.Pelicula.Calificacion = vmPelicula.Calificacion;
@@ -53,7 +59,7 @@ public class PeliculaController : Controller
         vmPelicula.Pelicula.Descripcion = vmPelicula.Descripcion;
         vmPelicula.Pelicula.Restriccion = vmPelicula.Restriccion;
         vmPelicula.Pelicula.Recaudado = vmPelicula.Recaudado;
-        
+
         vmPelicula.Pelicula.IdPelicula = vmPelicula.IdPelicula;
 
 
@@ -85,4 +91,3 @@ public class PeliculaController : Controller
         }
     }
 }
-
