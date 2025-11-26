@@ -4,6 +4,41 @@ Use 5to_Pelicula;
 
 START TRANSACTION ;
  SET time_zone ='-03:00';
+
+SELECT 'Ingresando ActoresPel'
+ -- Test1
+ (@idActorIdina, @idPeliFrozen, "Elsa"),
+ (@idActorJonathan, @idPeliFrozen, "Kristoff"),
+ (@idActorJosh, @idPeliFrozen, "Olaf"),
+ (@idActorAlan, @idPeliFrozen, "Duque Weselton"),
+ (@idActorEva, @idPeliFrozen, "Joven Elsa"),
+ (@idActorLivy, @idPeliFrozen, "Joven Anna"),
+ (@idActorSantino, @idPeliFrozen, "Hans"),
+ -- Frozen 2
+ (@idActorKristen, @idPeliFrozen2, "Anna"),
+ (@idActorIdina, @idPeliFrozen2, "Elsa"),
+ (@idActorJonathan, @idPeliFrozen2, "Kristoff"),
+ (@idActorJosh, @idPeliFrozen2, "Olaf"),
+ (@idActorSterling, @idPeliFrozen2, "Matthias"),
+ (@idActorEvan, @idPeliFrozen2, "Iduna"),
+ (@idActorMartha, @idPeliFrozen2, "Yelana"),
+ (@idActorRachel, @idPeliFrozen2, "Honeymaren"),
+ -- Interesellar
+ (@idActorMatthew, @idPeliInterestelar, "Joseph Coope"),
+ (@idActorAnne, @idPeliInterestelar, "Amelia Brand"),
+ (@idActorFoy, @idPeliInterestelar, "Murph joven"),
+ (@idActorJessica, @idPeliInterestelar, "Murph adulta"),
+ (@idActorMichael, @idPeliInterestelar, "Profesor Brand"),
+ (@idActorCasey, @idPeliInterestelar, "Tom"),
+ (@idActorMatt, @idPeliInterestelar, "Dr. Mann"),
+ (@idActorLithgow, @idPeliInterestelar, "Donald"),
+ (@idActorEllen, @idPeliInterestelar, "Murph anciana"),
+ (@idActorDavid, @idPeliInterestelar, "Romilly"),
+ (@idActorTopher, @idPeliInterestelar, "Getty"),
+ (@idActorChalamet, @idPeliInterestelar, "Tom joven"),
+ (@idActorStewart, @idPeliInterestelar, "CASE")
+;
+
  
  insert into Genero (idGenero, Genero)
  values (@idGFiccion, 'Ficcion'),
@@ -14,7 +49,8 @@ START TRANSACTION ;
  ;
  
  insert into Estudio (idEstudio, Nombre, fundacion)
- values (@idEstudioDisney, 'Disney', '1923-10-23'),
+ values 
+ (@idEstudioDisney, 'Disney', '1923-10-23'),
  (@idEstudioDream, 'DreamWorld', '1994-10-12'),
  (@idEstudioWarner, 'Warner Bros', '1923-04-04'),
  (@idEstudioGhibli, 'Studio Ghibli', '1985-06-15')
@@ -87,40 +123,7 @@ START TRANSACTION ;
  (@idTrInterestelar_4, @idGFiccion, @idPeliInterestelar, 'Interestelar', '00:02:19') -- tailer 4 Fijarse en ponerle la coma una vez verificado el Full test
 ;
 
-SELECT 'Ingresando ActoresPel'
 
- -- Test1
- (@idActorIdina, @idPeliFrozen, "Elsa"),
- (@idActorJonathan, @idPeliFrozen, "Kristoff"),
- (@idActorJosh, @idPeliFrozen, "Olaf"),
- (@idActorAlan, @idPeliFrozen, "Duque Weselton"),
- (@idActorEva, @idPeliFrozen, "Joven Elsa"),
- (@idActorLivy, @idPeliFrozen, "Joven Anna"),
- (@idActorSantino, @idPeliFrozen, "Hans"),
- -- Frozen 2
- (@idActorKristen, @idPeliFrozen2, "Anna"),
- (@idActorIdina, @idPeliFrozen2, "Elsa"),
- (@idActorJonathan, @idPeliFrozen2, "Kristoff"),
- (@idActorJosh, @idPeliFrozen2, "Olaf"),
- (@idActorSterling, @idPeliFrozen2, "Matthias"),
- (@idActorEvan, @idPeliFrozen2, "Iduna"),
- (@idActorMartha, @idPeliFrozen2, "Yelana"),
- (@idActorRachel, @idPeliFrozen2, "Honeymaren"),
- -- Interesellar
- (@idActorMatthew, @idPeliInterestelar, "Joseph Coope"),
- (@idActorAnne, @idPeliInterestelar, "Amelia Brand"),
- (@idActorFoy, @idPeliInterestelar, "Murph joven"),
- (@idActorJessica, @idPeliInterestelar, "Murph adulta"),
- (@idActorMichael, @idPeliInterestelar, "Profesor Brand"),
- (@idActorCasey, @idPeliInterestelar, "Tom"),
- (@idActorMatt, @idPeliInterestelar, "Dr. Mann"),
- (@idActorLithgow, @idPeliInterestelar, "Donald"),
- (@idActorEllen, @idPeliInterestelar, "Murph anciana"),
- (@idActorDavid, @idPeliInterestelar, "Romilly"),
- (@idActorTopher, @idPeliInterestelar, "Getty"),
- (@idActorChalamet, @idPeliInterestelar, "Tom joven"),
- (@idActorStewart, @idPeliInterestelar, "CASE")
-;
 
 commit;
 

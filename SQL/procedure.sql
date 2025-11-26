@@ -175,7 +175,7 @@ CREATE PROCEDURE UpdActor (in xidActor tinyint unsigned,
                             in xfecha_nacimiento DATE,
                             in xsexo char(1),
                             in xnacionalidad varchar(40),
-                            in xrol varchar (40)):
+                            in xrol varchar (40))
 BEGIN
     UPDATE Actor
     SET Nombre = xNombre,
@@ -218,7 +218,7 @@ CALL UpdActor(@idActorStewart, 'Josh', 'Stewart', '1977-02-06', 'M', 'Estadounid
 
 DELIMITER $$
 Drop Procedure if EXISTS `InsPelicula` $$
-Create Procedure DISTINCT InsPelicula ( out unidPelicula TINYINT UNSIGNED,
+Create Procedure InsPelicula ( out unidPelicula TINYINT UNSIGNED,
                                 unidProduccion tinyint unsigned,
                                 unnombre varchar(40),
                                 unestreno date,
@@ -241,7 +241,7 @@ call InsPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada',
  call InsPelicula(@idPeliInterestelar, @idProduInterestelar, 'Interestelar', '2014-11-06', 'Un equipo de exploradores viaja más allá de esta galaxia a través de un reciente descubierto agujero para descubrir si la humanidad tiene un futuro entre las estrellas', 9.0, '02:49:00', 13, 708000000) $$
 
 DELIMITER $$
-drop procedure if exist UpdPelicula $$
+drop procedure if EXISTS UpdPelicula $$
 create procedure UpdPelicula ( in unidPelicula TINYINT UNSIGNED,
                                 unidProduccion tinyint unsigned,
                                 unnombre varchar(40),
@@ -254,8 +254,10 @@ create procedure UpdPelicula ( in unidPelicula TINYINT UNSIGNED,
 begin 
 	Update Pelicula
 
-	SET Pelicula = unnombre
+	SET nombre = unnombre
 	WHERE idPelicula = unidPelicula;
+    
+end $$
 
 call UpdPelicula(@idPeliFrozen, @idProduFrozen, 'Frozen una aventura congelada', '2013-11-27', 'Anna y Kristoff desafían la naturaleza en una carrera para salvar a Elsa y al reino', 7.9, '01:42:00', 0, 1284219009) $$
 
