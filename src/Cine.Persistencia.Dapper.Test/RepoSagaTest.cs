@@ -25,9 +25,9 @@ public class RepoSagaTest : TestBase
 
         var altaSagaStarWars = new Saga (0, numero_saga,idPelicula,nombre) 
         {
-            NSaga = numero_saga,
+            Numero_Saga = numero_saga,
             IdPelicula = idPelicula,
-            NombreSaga = nombre
+            Nombre = nombre
         };
 
         repo.Alta(altaSagaStarWars);        
@@ -42,9 +42,9 @@ public class RepoSagaTest : TestBase
 
         var altaSagaStarWars = new Saga (0, numero_saga,idPelicula,nombre) 
         {
-            NSaga = numero_saga,
+            Numero_Saga = numero_saga,
             IdPelicula = idPelicula,
-            NombreSaga = nombre
+            Nombre = nombre
         };
 
         repo.Alta(altaSagaStarWars);        

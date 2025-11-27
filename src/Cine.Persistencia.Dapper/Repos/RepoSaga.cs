@@ -17,9 +17,9 @@ public class RepoSaga : RepoBase, IRepoSaga
     {
         var parametros = new DynamicParameters();
         parametros.Add("unidsaga", direction: ParameterDirection.Output);
-        parametros.Add("unNumero_Saga", saga.NSaga);
+        parametros.Add("unNumero_Saga", saga.Numero_Saga);
         parametros.Add("unidpelicula", saga.IdPelicula);
-        parametros.Add("unnombre", saga.NombreSaga);
+        parametros.Add("unnombre", saga.Nombre);
 
         //Conexion.Execute("insSaga", parametros);
 
@@ -30,7 +30,7 @@ public class RepoSaga : RepoBase, IRepoSaga
 
     public IEnumerable<Saga> TraerElementos()
     {
-        var query = @"SELECT IdSaga, Numero_Saga AS NSaga, idPelicula, Nombre AS NombreSaga FROM Saga";
+        var query = @"SELECT IdSaga, Numero_Saga, idPelicula, Nombre FROM Saga";
         var saga = Conexion.Query<Saga>(query);
         return saga;
     }
@@ -63,9 +63,9 @@ public class RepoSaga : RepoBase, IRepoSaga
         var parametros = new
         {
             unidsaga = saga.IdSaga,
-            unNumero_Saga = saga.NSaga,
+            unNumero_Saga = saga.Numero_Saga,
             unidPelicula = saga.IdPelicula,
-            unnombre = saga.NombreSaga
+            unnombre = saga.Nombre
         };
         await Conexion.ExecuteAsync(UpdSaga, parametros);
     }
@@ -79,7 +79,7 @@ public class RepoSaga : RepoBase, IRepoSaga
 
     public async Task<IEnumerable<Saga>> TraerElementosAsync()
     {
-        var query = @"SELECT IdSaga, Numero_Saga AS NSaga, idPelicula, Nombre AS NombreSaga FROM Saga";
+        var query = @"SELECT IdSaga, Numero_Saga, idPelicula, Nombre FROM Saga";
         var saga = await Conexion.QueryAsync<Saga>(query);
         return saga; 
     }

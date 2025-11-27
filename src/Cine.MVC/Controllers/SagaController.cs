@@ -40,8 +40,8 @@ public class SagaController : Controller
         vmSaga.Saga = saga;
         vmSaga.IdSaga = saga.IdSaga;
         vmSaga.IdPelicula = saga.IdPelicula;
-        vmSaga.Nombre = saga.NombreSaga;
-        vmSaga.NSaga = saga.NSaga;
+        vmSaga.Nombre = saga.Nombre;
+        vmSaga.NSaga = saga.Numero_Saga;
 
         return View("Upsert", vmSaga);
     }

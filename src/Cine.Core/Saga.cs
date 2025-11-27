@@ -6,16 +6,16 @@ public class Saga
                 byte idPelicula, string Nombre)
     {
         IdSaga = idSaga;
-        NSaga = Numero_Saga;
+        this.Numero_Saga = Numero_Saga;
         IdPelicula = idPelicula;
-        NombreSaga = Nombre;
+        this.Nombre = Nombre;
         Peliculas = [];
     }
 
     public byte IdSaga { get; set; }
     public byte IdPelicula { get; set; }
-    public byte NSaga { get; set; }
-    public string NombreSaga { get; set; }
+    public byte Numero_Saga { get; set; }
+    public string Nombre { get; set; }
     public IEnumerable<Pelicula> Peliculas { get; set; }
 
     public Saga()
