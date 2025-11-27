@@ -38,7 +38,7 @@ public class ActorController : Controller
 
             VMActor vmActor = new VMActor(actorPelis);
 
-        return View("Upsert", actor);
+        return View("Upsert", vmActor);
     }
 
     [HttpPost]
